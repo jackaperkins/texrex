@@ -1,0 +1,62 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://main.gd" type="Script" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.66742
+margin_top = -1.25992
+margin_right = 1.66748
+margin_bottom = -1.25989
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainTexture" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -126.413
+margin_top = -124.825
+margin_right = 129.587
+margin_bottom = 131.175
+rect_pivot_offset = Vector2( 128, 128 )
+stretch_mode = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Load" type="Button" parent="."]
+margin_left = 1.25992
+margin_top = -1.25993
+margin_right = 148.26
+margin_bottom = 35.7401
+text = "Load"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -214.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="modifiers_container" type="VBoxContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 0.529739
+margin_bottom = 0.529724
+size_flags_vertical = 0
+custom_constants/separation = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Load" to="." method="_on_Load_pressed"]

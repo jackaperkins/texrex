@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://modifiers/modifier_contrast.gd" type="Script" id=1]
+
+[node name="Modifier Contrast" type="Panel"]
+anchor_right = 1.0
+rect_min_size = Vector2( 0, 50 )
+size_flags_vertical = 0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Contrast" type="HSlider" parent="."]
+margin_left = 7.19226
+margin_top = 22.895
+margin_right = 201.192
+margin_bottom = 45.895
+max_value = 1.0
+step = 0.05
+value = 0.05
+tick_count = 11
+ticks_on_borders = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 5.48651
+margin_top = 6.29713
+margin_right = 73.4865
+margin_bottom = 37.2971
+text = "Contrast
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="value_changed" from="Contrast" to="." method="_on_Contrast_value_changed"]
