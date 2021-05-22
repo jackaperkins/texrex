@@ -2,10 +2,14 @@ extends Control
 
 var original_image = Image.new() # image data
 var image = Image.new()
+
+var result = Image.new()
+
 var texture = ImageTexture.new() # texture version that can be shown inside a sprite
 
 const modifier_resolution = preload("res://modifiers/modifier_resolution.tscn")
 const modifier_constrast = preload("res://modifiers/modifier_contrast.tscn")
+const modifier_pallette = preload("res://modifiers/modifier_pallette.tscn")
 
 var modifiers = []
 
@@ -13,10 +17,13 @@ var is_dragging = false
 
 func _ready():
 	# instance default modifiers
+	for child in $main_split/Panel/modifiers_container.get_children():
+		child.queue_free()
 	add_modifier(modifier_constrast)
+	add_modifier(modifier_pallette)
 	add_modifier(modifier_resolution)
 	
-	_on_Load_pressed()
+	preload_default()
 
 
 func process_all():
@@ -25,7 +32,7 @@ func process_all():
 
 func add_modifier(scene):
 	var mod = scene.instance()
-	$Panel/modifiers_container.add_child(mod)
+	$main_split/Panel/modifiers_container.add_child(mod)
 	mod.connect("updated", self, "_on_modifier_updated")
 	modifiers.append(mod)
 
@@ -34,7 +41,7 @@ func _on_modifier_updated():
 	var updating = false
 	
 	# walk backwards through array, bottom to top
-	var result = Image.new()
+	result = Image.new()
 	var i = modifiers.size() - 1
 	while i >= 0:
 		var modifier = modifiers[i]
@@ -53,7 +60,7 @@ func _on_modifier_updated():
 		i -= 1
 		
 	texture.create_from_image(result,3)
-	$MainTexture.texture = texture
+	$canvas_root/MainTexture.texture = texture
 
 func _process(delta):
 	if Input.is_action_just_pressed('middle_mouse'):
@@ -65,18 +72,33 @@ func _input(event):
 	# Mouse in viewport coordinates.
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_WHEEL_UP:
-			$MainTexture.rect_scale += Vector2(0.1, 0.1)
+			$canvas_root.rect_scale += Vector2(0.1, 0.1)
 		elif event.button_index == BUTTON_WHEEL_DOWN:
-			$MainTexture.rect_scale-= Vector2(0.1, 0.1)
+			$canvas_root.rect_scale-= Vector2(0.1, 0.1)
 	if event is InputEventMouseMotion and is_dragging:
-		$MainTexture.rect_position += event.relative
+		$canvas_root.rect_position += event.relative
 
-func _on_Load_pressed():
-#	image.load('C:/Users/jacka/Documents/_projects/texrex/sample_textures/woman.jpg')
+func preload_default():
+	image.load('C:/Users/jacka/Documents/_projects/texrex/sample_textures/woman.jpg')
 	original_image.load('C:/Users/jacka/Documents/_projects/texrex/sample_textures/rig.jpg')
 	image.copy_from(original_image)
+	process_all()
+	
+func _on_Load_pressed():
+	print('loading file dialog')
+	$open_file_dialog.popup_centered_clamped(Vector2(800,600))
 
-	texture.create_from_image(image,3)
-	$MainTexture.texture = texture
+func _on_open_image(path_to_image):
+	original_image.load(path_to_image)
+	image.copy_from(original_image)
 	process_all()
 
+func _on_Save_pressed():
+	print('loading save dialog')
+	$save_file_dialog.popup_centered_clamped(Vector2(800,600))
+	pass # Replace with function body.
+
+func _on_save_file_dialog_file_selected(path):
+	result.save_png(path)
+	pass # Replace with function body.
+	

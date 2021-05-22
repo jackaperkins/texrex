@@ -1,54 +1,109 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
+[ext_resource path="res://modifiers/modifier_contrast.tscn" type="PackedScene" id=2]
+[ext_resource path="res://modifiers/modifier_resolution.tscn" type="PackedScene" id=3]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 1.66742
+margin_left = 0.544922
 margin_top = -1.25992
-margin_right = 1.66748
+margin_right = 0.544922
 margin_bottom = -1.25989
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MainTexture" type="TextureRect" parent="."]
+[node name="canvas_root" type="Control" parent="."]
+margin_left = 467.515
+margin_top = 252.96
+margin_right = 507.515
+margin_bottom = 292.96
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="canvas_root"]
+margin_left = -256.0
+margin_right = 256.0
+margin_bottom = 4.89188
+
+[node name="MainTexture" type="TextureRect" parent="canvas_root"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -126.413
-margin_top = -124.825
-margin_right = 129.587
-margin_bottom = 131.175
+margin_left = -128.69
+margin_top = -127.799
+margin_right = 127.31
+margin_bottom = 128.201
 rect_pivot_offset = Vector2( 128, 128 )
 stretch_mode = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Load" type="Button" parent="."]
-margin_left = 1.25992
-margin_top = -1.25993
-margin_right = 148.26
-margin_bottom = 35.7401
+[node name="main_split" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="main area" type="Control" parent="main_split"]
+margin_right = 811.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 149.689, 0 )
+size_flags_horizontal = 3
+
+[node name="Panel2" type="Panel" parent="main_split/main area"]
+anchor_right = 1.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="main_split/main area/Panel2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Load" type="Button" parent="main_split/main area/Panel2/HBoxContainer"]
+margin_right = 42.0
+margin_bottom = 30.0
 text = "Load"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="Panel" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -214.0
+[node name="Save" type="Button" parent="main_split/main area/Panel2/HBoxContainer"]
+margin_left = 46.0
+margin_right = 87.0
+margin_bottom = 30.0
+text = "Save"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="modifiers_container" type="VBoxContainer" parent="Panel"]
+[node name="Panel" type="Panel" parent="main_split"]
+margin_left = 811.0
+margin_right = 1024.87
+margin_bottom = 600.0
+rect_min_size = Vector2( 213.866, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="modifiers_container" type="VBoxContainer" parent="main_split/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 0.529739
@@ -59,4 +114,53 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="Load" to="." method="_on_Load_pressed"]
+[node name="Modifier Contrast" parent="main_split/Panel/modifiers_container" instance=ExtResource( 2 )]
+anchor_right = 0.0
+margin_right = 213.0
+margin_bottom = 50.0
+
+[node name="Modifier Resolution" parent="main_split/Panel/modifiers_container" instance=ExtResource( 3 )]
+margin_top = 56.0
+margin_right = 213.0
+margin_bottom = 106.0
+
+[node name="open_file_dialog" type="FileDialog" parent="."]
+margin_left = 141.776
+margin_top = 70.7754
+margin_right = 880.776
+margin_bottom = 540.775
+window_title = "Open an Image"
+resizable = true
+mode_overrides_title = false
+mode = 0
+access = 2
+filters = PoolStringArray( "*.png", "*.jpg", "*.gif" )
+show_hidden_files = true
+current_dir = "/Users/jacka/Documents/_projects/texrex/texrex"
+current_path = "/Users/jacka/Documents/_projects/texrex/texrex/"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="save_file_dialog" type="FileDialog" parent="."]
+visible = true
+margin_left = 141.776
+margin_top = 70.7754
+margin_right = 880.776
+margin_bottom = 540.775
+window_title = "Save"
+resizable = true
+mode_overrides_title = false
+access = 2
+filters = PoolStringArray( "*.png" )
+show_hidden_files = true
+current_dir = "/Users/jacka/Documents/_projects/texrex/texrex"
+current_path = "/Users/jacka/Documents/_projects/texrex/texrex/"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="main_split/main area/Panel2/HBoxContainer/Load" to="." method="_on_Load_pressed"]
+[connection signal="pressed" from="main_split/main area/Panel2/HBoxContainer/Save" to="." method="_on_Save_pressed"]
+[connection signal="file_selected" from="open_file_dialog" to="." method="_on_open_image"]
+[connection signal="file_selected" from="save_file_dialog" to="." method="_on_save_file_dialog_file_selected"]
