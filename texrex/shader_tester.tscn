@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://shaders/shader_tester_material.tres" type="Material" id=1]
+[ext_resource path="res://shaders/shader_demo_control.gd" type="Script" id=2]
 
 [sub_resource type="ViewportTexture" id=3]
 viewport_path = NodePath("Viewport")
@@ -11,29 +11,32 @@ albedo_texture = SubResource( 3 )
 
 [sub_resource type="SphereMesh" id=1]
 
-[node name="Control" type="Spatial"]
-
-[node name="Control" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="Control" type="Control"]
+margin_right = 972.0
+margin_bottom = 605.0
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Viewport" type="Viewport" parent="Control"]
-size = Vector2( 256, 256 )
-hdr = false
-usage = 0
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 12.0234
+margin_top = 281.164
+margin_right = 293.023
+margin_bottom = 537.164
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="ColorRect" type="ColorRect" parent="Control/Viewport"]
-material = ExtResource( 1 )
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="Control" type="Spatial" parent="."]
 
-[node name="MeshInstance" type="MeshInstance" parent="."]
+[node name="MeshInstance" type="MeshInstance" parent="Control"]
 material_override = SubResource( 2 )
 mesh = SubResource( 1 )
 material/0 = null
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.01406 )
+[node name="Button" type="Button" parent="."]
+margin_left = 196.221
+margin_top = 278.982
+margin_right = 316.221
+margin_bottom = 327.982
