@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Control",
+"class": "Modifier",
+"language": "GDScript",
+"path": "res://modifiers/modifier.gd"
+} ]
+_global_script_class_icons={
+"Modifier": ""
+}
+
 [application]
 
 config/name="texrex"

@@ -10,21 +10,21 @@ var texture = ImageTexture.new() # texture version that can be shown inside a sp
 const modifier_resolution = preload("res://modifiers/modifier_resolution.tscn")
 const modifier_constrast = preload("res://modifiers/modifier_contrast.tscn")
 const modifier_pallette = preload("res://modifiers/modifier_pallette.tscn")
-const modifier_base = preload("res://modifiers/modifier_base.tscn")
+const modifier_noise = preload("res://modifiers/modifier_noise.tscn")
 
 var modifiers = []
 
 var is_dragging = false
 
 func _ready():
-	# instance default modifiers
-#	for child in $main_split/Panel/modifiers_container.get_children():
-#		child.queue_free()
-#	add_modifier(modifier_constrast)
-#	add_modifier(modifier_pallette)
-#	add_modifier(modifier_base)
-#	add_modifier(modifier_resolution)
-	pass
+	#instance default modifiers
+	for child in $main_split/Panel/modifiers_container.get_children():
+		child.queue_free()
+	add_modifier(modifier_constrast)
+	add_modifier(modifier_pallette)
+	add_modifier(modifier_noise)
+	add_modifier(modifier_resolution)
+
 #	preload_default()
 
 
@@ -46,7 +46,7 @@ func _on_modifier_updated():
 	result = Image.new()
 	var i = modifiers.size() - 1
 	while i >= 0:
-		var modifier = modifiers[i]
+		var modifier = find_modifier(modifiers[i])
 		if updating or modifier.needs_processing: 
 			updating = true  # once we hit a modifier that did update, everyone must
 			print('processing: ' + modifier.name)
@@ -55,7 +55,7 @@ func _on_modifier_updated():
 			var image = Image.new()
 			image.copy_from(original_image)
 			if i < modifiers.size() - 1:
-				image.copy_from(modifiers[i+1].image)
+				image.copy_from(find_modifier(modifiers[i+1]).image)
 				
 			modifier.process_image(image)
 			result.copy_from(modifier.image)
@@ -63,6 +63,15 @@ func _on_modifier_updated():
 		
 	texture.create_from_image(result,3)
 	$canvas_root/MainTexture.texture = texture
+
+# return a modifier or childclass somewhere in the node/children
+func find_modifier(node:Node):
+	if node is Modifier:
+		return node
+	else:
+		for n in node.get_children():
+			if n is Modifier:
+				return n
 
 func _process(delta):
 	if Input.is_action_just_pressed('middle_mouse'):

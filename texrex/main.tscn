@@ -142,12 +142,12 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 112.0
 margin_right = 213.0
-margin_bottom = 312.0
+margin_bottom = 275.0
 
 [node name="Modifier Resolution2" parent="main_split/Panel/modifiers_container" instance=ExtResource( 3 )]
-margin_top = 318.0
+margin_top = 281.0
 margin_right = 213.0
-margin_bottom = 368.0
+margin_bottom = 331.0
 
 [node name="open_file_dialog" type="FileDialog" parent="."]
 margin_left = 141.776
