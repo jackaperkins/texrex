@@ -6,7 +6,7 @@ var scale = 0.05
 func _ready():
 	clear_placeholders()
 	set_secondary_visible(false)
-	add_primary_child($LineEdit)
+	add_primary_child($Noise)
 
 func process_image(incoming:Image):
 	image.copy_from(incoming)
@@ -28,3 +28,11 @@ func process_image(incoming:Image):
 func _on_show_toggled(button_pressed):
 	print('calling toggle in base')
 	._on_show_toggled(button_pressed)
+
+
+func _on_Noise_value_changed(value):
+	print('changing!!')
+	scale = pow(value, 4)
+	needs_processing = true
+	set_label('Noise ' + String(scale))
+	emit_signal("updated")

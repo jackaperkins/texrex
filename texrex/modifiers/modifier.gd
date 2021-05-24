@@ -30,6 +30,9 @@ func clear_placeholders():
 func set_secondary_visible(value):
 	$Main/Secondary.visible = value
 	$Main/Title/ShowSecondary.pressed = value
+	
+func set_label(text:String):
+	$Main/Title/Label.text = text
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

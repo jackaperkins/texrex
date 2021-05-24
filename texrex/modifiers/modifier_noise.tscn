@@ -15,11 +15,14 @@ margin_right = 1024.0
 margin_bottom = 163.0
 script = ExtResource( 2 )
 
-[node name="LineEdit" type="LineEdit" parent="Modifier"]
+[node name="Noise" type="HSlider" parent="Modifier"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 1017.0
-margin_bottom = 156.0
-text = "2343254"
-placeholder_text = "number"
-caret_blink = true
+margin_bottom = 23.0
+max_value = 1.0
+step = 0.0
+tick_count = 10
+ticks_on_borders = true
+
+[connection signal="value_changed" from="Modifier/Noise" to="Modifier" method="_on_Noise_value_changed"]

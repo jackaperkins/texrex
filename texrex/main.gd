@@ -25,8 +25,6 @@ func _ready():
 	add_modifier(modifier_noise)
 	add_modifier(modifier_resolution)
 
-#	preload_default()
-
 
 func process_all():
 	modifiers[modifiers.size()-1].needs_processing = true
@@ -35,8 +33,11 @@ func process_all():
 func add_modifier(scene):
 	var mod = scene.instance()
 	$main_split/Panel/modifiers_container.add_child(mod)
-	mod.connect("updated", self, "_on_modifier_updated")
-	modifiers.append(mod)
+	
+	# we use find_modifier to grab the actual modifier node
+	# as the child class scenes will wrap it in another node
+	find_modifier(mod).connect("updated", self, "_on_modifier_updated")
+	modifiers.append(find_modifier(mod))
 
 func _on_modifier_updated():
 	print('checking stack..')
@@ -46,7 +47,7 @@ func _on_modifier_updated():
 	result = Image.new()
 	var i = modifiers.size() - 1
 	while i >= 0:
-		var modifier = find_modifier(modifiers[i])
+		var modifier = modifiers[i]
 		if updating or modifier.needs_processing: 
 			updating = true  # once we hit a modifier that did update, everyone must
 			print('processing: ' + modifier.name)
@@ -55,7 +56,7 @@ func _on_modifier_updated():
 			var image = Image.new()
 			image.copy_from(original_image)
 			if i < modifiers.size() - 1:
-				image.copy_from(find_modifier(modifiers[i+1]).image)
+				image.copy_from(modifiers[i+1].image)
 				
 			modifier.process_image(image)
 			result.copy_from(modifier.image)
