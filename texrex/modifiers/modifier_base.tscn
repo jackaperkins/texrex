@@ -51,6 +51,7 @@ __meta__ = {
 margin_left = 980.0
 margin_right = 1010.0
 margin_bottom = 31.0
+hint_tooltip = "Skip"
 size_flags_horizontal = 10
 toggle_mode = true
 texture_normal = ExtResource( 2 )
