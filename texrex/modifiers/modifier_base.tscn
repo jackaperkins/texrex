@@ -53,9 +53,8 @@ margin_right = 1010.0
 margin_bottom = 31.0
 size_flags_horizontal = 10
 toggle_mode = true
-pressed = true
-texture_normal = ExtResource( 3 )
-texture_pressed = ExtResource( 2 )
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
