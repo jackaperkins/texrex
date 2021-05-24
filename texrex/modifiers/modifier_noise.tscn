@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://modifiers/modifier_base.tscn" type="PackedScene" id=1]
+[ext_resource path="res://modifiers/modifier_noise.gd" type="Script" id=2]
+
+[node name="Container" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+
+[node name="Modifier" parent="." instance=ExtResource( 1 )]
+anchor_right = 0.0
+margin_left = 0.0
+margin_right = 1024.0
+margin_bottom = 200.0
+script = ExtResource( 2 )
+
+[node name="LineEdit" type="LineEdit" parent="Modifier"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1017.0
+margin_bottom = 193.0
+text = "2343254"
+placeholder_text = "number"
+caret_blink = true

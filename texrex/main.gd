@@ -10,6 +10,7 @@ var texture = ImageTexture.new() # texture version that can be shown inside a sp
 const modifier_resolution = preload("res://modifiers/modifier_resolution.tscn")
 const modifier_constrast = preload("res://modifiers/modifier_contrast.tscn")
 const modifier_pallette = preload("res://modifiers/modifier_pallette.tscn")
+const modifier_base = preload("res://modifiers/modifier_base.tscn")
 
 var modifiers = []
 
@@ -17,13 +18,14 @@ var is_dragging = false
 
 func _ready():
 	# instance default modifiers
-	for child in $main_split/Panel/modifiers_container.get_children():
-		child.queue_free()
-	add_modifier(modifier_constrast)
-	add_modifier(modifier_pallette)
-	add_modifier(modifier_resolution)
-	
-	preload_default()
+#	for child in $main_split/Panel/modifiers_container.get_children():
+#		child.queue_free()
+#	add_modifier(modifier_constrast)
+#	add_modifier(modifier_pallette)
+#	add_modifier(modifier_base)
+#	add_modifier(modifier_resolution)
+	pass
+#	preload_default()
 
 
 func process_all():

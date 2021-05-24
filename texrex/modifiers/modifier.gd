@@ -15,9 +15,15 @@ func _process(delta):
 func process_image(incoming:Image):
 	pass
 
+func add_primary_child(node:Node):
+	node.get_parent().remove_child(node)
+	$Main/Primary.add_child(node)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	modulate_color = self_modulate
 	pass # Replace with function body.
 
+
+func _on_show_toggled(button_pressed):
+	$Main/Secondary.visible = button_pressed
