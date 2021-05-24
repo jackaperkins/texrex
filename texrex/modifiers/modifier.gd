@@ -21,6 +21,10 @@ func add_primary_child(node:Node):
 	node.get_parent().remove_child(node)
 	$Main/Primary.add_child(node)
 
+func add_secondary_child(node:Node):
+	node.get_parent().remove_child(node)
+	$Main/Secondary/VBox.add_child(node)
+
 func clear_placeholders():
 	for child in $Main/Primary.get_children():
 		child.queue_free()
@@ -31,6 +35,10 @@ func clear_placeholders():
 func set_secondary_visible(value):
 	$Main/Secondary.visible = value
 	$Main/Title/ShowSecondary.pressed = value
+	
+func hide_secondary_toggle():
+	$Main/Secondary.visible = false
+	$Main/Title/ShowSecondary.visible = false
 	
 func set_label(text:String):
 	$Main/Title/Label.text = text

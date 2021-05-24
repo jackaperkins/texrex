@@ -56,10 +56,11 @@ __meta__ = {
 }
 
 [node name="main area" type="Control" parent="main_split"]
-margin_right = 811.0
+margin_right = 682.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 149.689, 0 )
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
 
 [node name="Menubar" type="Panel" parent="main_split/main area"]
 anchor_right = 1.0
@@ -109,10 +110,11 @@ __meta__ = {
 }
 
 [node name="Panel" type="Panel" parent="main_split"]
-margin_left = 811.0
-margin_right = 1024.87
+margin_left = 682.0
+margin_right = 1024.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 213.866, 0 )
+size_flags_horizontal = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -122,32 +124,32 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 0.529739
 margin_bottom = 0.529724
-custom_constants/separation = 6
+custom_constants/separation = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Modifier Contrast" parent="main_split/Panel/modifiers_container" instance=ExtResource( 2 )]
 anchor_right = 0.0
-margin_right = 213.0
+margin_right = 342.0
 margin_bottom = 50.0
 
 [node name="Modifier Resolution" parent="main_split/Panel/modifiers_container" instance=ExtResource( 3 )]
-margin_top = 56.0
-margin_right = 213.0
-margin_bottom = 106.0
+margin_top = 50.0
+margin_right = 342.0
+margin_bottom = 100.0
 
 [node name="Container" parent="main_split/Panel/modifiers_container" instance=ExtResource( 5 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 112.0
-margin_right = 213.0
-margin_bottom = 275.0
+margin_top = 100.0
+margin_right = 342.0
+margin_bottom = 233.0
 
 [node name="Modifier Resolution2" parent="main_split/Panel/modifiers_container" instance=ExtResource( 3 )]
-margin_top = 281.0
-margin_right = 213.0
-margin_bottom = 331.0
+margin_top = 233.0
+margin_right = 342.0
+margin_bottom = 283.0
 
 [node name="open_file_dialog" type="FileDialog" parent="."]
 margin_left = 141.776

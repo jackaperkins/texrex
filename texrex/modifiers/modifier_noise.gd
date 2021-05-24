@@ -5,9 +5,15 @@ var scale = 0.05
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	clear_placeholders()
-	set_secondary_visible(false)
 	add_primary_child($Noise)
 	set_label('Noise ' + String(scale))
+	
+	var tabs = $Tabs
+	tabs.add_tab("Rainbow")
+	tabs.add_tab("Hue Shift")
+	add_secondary_child(tabs)
+	add_secondary_child($HSlider)
+	set_secondary_visible(false)
 	
 
 func process_image(incoming:Image):
