@@ -7,6 +7,8 @@ func _ready():
 	clear_placeholders()
 	set_secondary_visible(false)
 	add_primary_child($Noise)
+	set_label('Noise ' + String(scale))
+	
 
 func process_image(incoming:Image):
 	image.copy_from(incoming)
@@ -20,18 +22,11 @@ func process_image(incoming:Image):
 			image.set_pixel(x,y, pixel)
 	image.unlock()
 	
-	
-	print('processing contrast!')
 	needs_processing = false
 
 
-func _on_show_toggled(button_pressed):
-	print('calling toggle in base')
-	._on_show_toggled(button_pressed)
-
 
 func _on_Noise_value_changed(value):
-	print('changing!!')
 	scale = pow(value, 4)
 	needs_processing = true
 	set_label('Noise ' + String(scale))

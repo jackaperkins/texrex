@@ -57,8 +57,10 @@ func _on_modifier_updated():
 			image.copy_from(original_image)
 			if i < modifiers.size() - 1:
 				image.copy_from(modifiers[i+1].image)
-				
-			modifier.process_image(image)
+			if modifier.skip:
+				modifier.image = image
+			else:
+				modifier.process_image(image)
 			result.copy_from(modifier.image)
 		i -= 1
 		

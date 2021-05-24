@@ -4,6 +4,7 @@ class_name Modifier
 
 signal updated()
 var needs_processing = false # flag value
+var skip = false
 
 var image = Image.new()
 var modulate_color
@@ -43,6 +44,11 @@ func _ready():
 func _on_show_toggled(button_pressed):
 	$Main/Secondary.visible = button_pressed
 
+func _on_skip_toggled(button_pressed):
+	print('skip toggled ' + String(button_pressed))
+	skip = button_pressed
+	needs_processing = true
+	emit_signal('updated')
 
 ## image processing
 func process_image(incoming:Image):
