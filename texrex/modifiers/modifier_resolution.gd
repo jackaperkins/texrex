@@ -13,19 +13,19 @@ func _update_ui():
 
 func process_image(incoming:Image):
 	## pass in
-	print('about to shader process...')
-	yield(process_shader(mat, Vector2(256,256), image), 'completed')
-	print('finished after yield!')
-	needs_processing = false
-	return
-#	image.copy_from(incoming)
-#	image.lock()
-##	image.set_pixel(rand_range(3,30),30, Color(0,0,0.0))
-##	image.set_pixel(rand_range(3,30),32, Color(0,0,1.0))
-#	image.unlock()
-#	var size = pow(2, power)
-#	image.resize(size,size, Image.INTERPOLATE_NEAREST)
+#	print('about to shader process...')
+#	yield(process_shader(mat, Vector2(256,256), image), 'completed')
+#	print('finished after yield!')
 #	needs_processing = false
+#	return
+	image.copy_from(incoming)
+	image.lock()
+#	image.set_pixel(rand_range(3,30),30, Color(0,0,0.0))
+#	image.set_pixel(rand_range(3,30),32, Color(0,0,1.0))
+	image.unlock()
+	var size = pow(2, power)
+	image.resize(size,size, Image.INTERPOLATE_NEAREST)
+	needs_processing = false
 
 func _on_Resolution_value_changed(value):
 	power = value

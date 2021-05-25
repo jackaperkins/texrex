@@ -16,14 +16,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Modifier" parent="." instance=ExtResource( 1 )]
+[node name="Modifier Pallette" parent="." instance=ExtResource( 1 )]
 anchor_right = 0.0
 margin_left = 0.0
 margin_right = 214.0
 margin_bottom = 105.0
 script = ExtResource( 3 )
 
-[node name="Pallette" type="HSlider" parent="Modifier"]
+[node name="Pallette" type="HSlider" parent="Modifier Pallette"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 207.0
@@ -38,4 +38,4 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="value_changed" from="Modifier/Pallette" to="Modifier" method="_on_Pallette_value_changed"]
+[connection signal="value_changed" from="Modifier Pallette/Pallette" to="Modifier Pallette" method="_on_Pallette_value_changed"]

@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://shaders/noise.shader" type="Shader" id=1]
+[ext_resource path="res://macicon.png" type="Texture" id=2]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/amount = 0.5
+shader_param/tex = ExtResource( 2 )

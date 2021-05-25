@@ -20,7 +20,6 @@ func _ready():
 	#instance default modifiers
 	for child in $main_split/Panel/modifiers_container.get_children():
 		child.queue_free()
-	add_modifier(modifier_constrast)
 	add_modifier(modifier_pallette)
 	add_modifier(modifier_noise)
 	add_modifier(modifier_resolution)
@@ -40,7 +39,6 @@ func add_modifier(scene):
 	modifiers.append(find_modifier(mod))
 
 func _on_modifier_updated():
-	print('checking stack..')
 	var updating = false
 	
 	# walk backwards through array, bottom to top
@@ -50,7 +48,7 @@ func _on_modifier_updated():
 		var modifier = modifiers[i]
 		if updating or modifier.needs_processing: 
 			updating = true  # once we hit a modifier that did update, everyone must
-			print('processing: ' + modifier.name)
+			print('processing modifier node: ' + modifier.name)
 			
 			# get the previous image data in the stack, or original if we're at end
 			var image = Image.new()

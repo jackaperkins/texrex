@@ -67,7 +67,7 @@ func process_shader(material:Material, canvas_size:Vector2, result_image):
 	var view = Viewport.new()
 	view.disable_3d = true
 	view.render_target_update_mode = Viewport.UPDATE_ALWAYS
-	view.size = Vector2(256,256)
+	view.size = canvas_size
 	var rect = ColorRect.new()
 	rect.material = material
 	rect.rect_size = canvas_size #Vector2(256,256)
@@ -76,19 +76,19 @@ func process_shader(material:Material, canvas_size:Vector2, result_image):
 	add_child(view)
 	
 	var texture:ViewportTexture
-	var image:Image
+	var image_data:Image
 
 	# dangerous scary loop where we spin waiting for the texture to render
 	while true:
 		texture = view.get_texture()
-		image = texture.get_data()
-		image.lock()
+		image_data = texture.get_data()
+		image_data.lock()
 		# we know our texture is done because the pixel in the corner isn't 0 alpha
-		if image.get_pixel(0,0).a != 0.0:
-			image.unlock()
-			result_image.copy_from(image)
+		if image_data.get_pixel(0,0).a != 0.0:
+			image_data.unlock()
+			result_image.copy_from(image_data)
 			break
-		image.unlock()
+		image_data.unlock()
 		print('viewport yield.. waiting a frame')
 		yield(get_tree(), "idle_frame")
 	

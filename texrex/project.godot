@@ -24,7 +24,7 @@ config/name="Texrex"
 run/main_scene="res://main.tscn"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
-config/icon="res://icons/texrex_app_icon.png"
+config/icon="res://icons/texrex_icon_4xscaled.png"
 
 [input]
 
