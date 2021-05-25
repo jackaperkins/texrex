@@ -20,20 +20,16 @@ __meta__ = {
 anchor_right = 0.0
 margin_left = 0.0
 margin_right = 214.0
-margin_bottom = 93.0
+margin_bottom = 134.0
 script = ExtResource( 3 )
 
 [node name="Pallette" type="HSlider" parent="Modifier Pallette"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 204.0
-margin_bottom = 26.0
+margin_right = 214.0
+margin_bottom = 16.0
 min_value = 2.0
 max_value = 512.0
 value = 16.0
 exp_edit = true
-tick_count = 7
-ticks_on_borders = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

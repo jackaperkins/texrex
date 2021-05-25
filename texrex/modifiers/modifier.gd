@@ -33,11 +33,11 @@ func clear_placeholders():
 		child.queue_free()		
 
 func set_secondary_visible(value):
-	$Main/MarginContainer3/Secondary.visible = value
+	$Main/MarginContainer3.visible = value
 	$Main/MarginContainer/Title/ShowSecondary.pressed = value
 	
 func hide_secondary_toggle():
-	$Main/MarginContainer3/Secondary.visible = false
+	$Main/MarginContainer3.visible = false
 	$Main/MarginContainer/Title/ShowSecondary.visible = false
 	
 func set_label(text:String):
@@ -50,7 +50,7 @@ func _ready():
 
 
 func _on_show_toggled(button_pressed):
-	$Main/MarginContainer3/Secondary.visible = button_pressed
+	$Main/MarginContainer3.visible = button_pressed
 
 func _on_skip_toggled(button_pressed):
 	print('skip toggled ' + String(button_pressed))
