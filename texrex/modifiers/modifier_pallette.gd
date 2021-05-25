@@ -1,4 +1,5 @@
 extends "res://modifiers/modifier.gd"
+onready var mat:ShaderMaterial = load('res://shaders/m_render_pallette.tres')
 
 var count
 
@@ -6,6 +7,7 @@ var count
 func _ready():
 	count = $Pallette.value
 	clear_placeholders()
+	mat = mat.duplicate()
 	set_secondary_visible(false)
 	add_primary_child($Pallette)
 	hide_secondary_toggle()
@@ -17,17 +19,13 @@ func _update_ui():
 	set_label('Pallette ' + String(count))
 
 func process_image(incoming:Image):
-	image.copy_from(incoming)
-	image.lock()
-	for x in range(image.get_width()):
-		for y in range(image.get_height()):
-			var pixel:Color = image.get_pixel(x,y)
-			pixel.r = floor(pixel.r*count) / float(count)
-			pixel.g = floor(pixel.g*count) / float(count)
-			pixel.b = floor(pixel.b*count) / float(count)
-			image.set_pixel(x,y, pixel)
-	image.unlock()
+	mat.set_shader_param('count', count)
+	# required to feed our image into a shadermaterial and get it back!
+	var image_texture:ImageTexture = ImageTexture.new()
+	image_texture.create_from_image(incoming)
+	mat.set_shader_param('tex', image_texture)
 	
+	yield(process_shader(mat, incoming.get_size(), image), 'completed')
 	needs_processing = false
 
 func _on_Pallette_value_changed(value):

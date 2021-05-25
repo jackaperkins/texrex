@@ -50,6 +50,7 @@ func _ready():
 
 
 func _on_show_toggled(button_pressed):
+	$Main/Title/ShowSecondary
 	$Main/Secondary.visible = button_pressed
 
 func _on_skip_toggled(button_pressed):
@@ -58,7 +59,7 @@ func _on_skip_toggled(button_pressed):
 	needs_processing = true
 	emit_signal('updated')
 
-## image processing
+## image processing, this is the core function that gets called for a modifer
 func process_image(incoming:Image):
 	pass
 
@@ -84,7 +85,7 @@ func process_shader(material:Material, canvas_size:Vector2, result_image):
 		image_data = texture.get_data()
 		image_data.lock()
 		# we know our texture is done because the pixel in the corner isn't 0 alpha
-		if image_data.get_pixel(0,0).a != 0.0:
+		if image_data.get_pixel(0,0).a != 0.0: #we know this throws an error, someones unhappy we're accessing a null pointer but we still get a safe value of 0,0,0,0 that we can sentinel off of!!!
 			image_data.unlock()
 			result_image.copy_from(image_data)
 			break

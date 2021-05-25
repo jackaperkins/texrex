@@ -40,7 +40,9 @@ func add_modifier(scene):
 
 func _on_modifier_updated():
 	var updating = false
-	
+	if original_image.get_size().length() == 0:
+		print('skipping modifiers stack, no image loaded')
+		return
 	# walk backwards through array, bottom to top
 	result = Image.new()
 	var i = modifiers.size() - 1

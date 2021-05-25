@@ -43,6 +43,7 @@ margin_right = 21.0
 margin_bottom = 31.0
 mouse_default_cursor_shape = 2
 toggle_mode = true
+pressed = true
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
 stretch_mode = 2
@@ -59,7 +60,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureButton" type="TextureButton" parent="Main/Title"]
+[node name="Skip" type="TextureButton" parent="Main/Title"]
 margin_left = 980.0
 margin_right = 1010.0
 margin_bottom = 31.0
@@ -103,4 +104,4 @@ margin_bottom = 91.0
 rect_min_size = Vector2( 0, 10 )
 
 [connection signal="toggled" from="Main/Title/ShowSecondary" to="." method="_on_show_toggled"]
-[connection signal="toggled" from="Main/Title/TextureButton" to="." method="_on_skip_toggled"]
+[connection signal="toggled" from="Main/Title/Skip" to="." method="_on_skip_toggled"]
