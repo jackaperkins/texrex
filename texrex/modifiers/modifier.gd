@@ -10,7 +10,7 @@ var image = Image.new()
 var modulate_color
 var glow = 0
 
-onready var secondary = $Main/Secondary
+onready var secondary = $Main/MarginContainer3/Secondary
 
 # UI stuff
 func _process(delta):
@@ -19,29 +19,29 @@ func _process(delta):
 
 func add_primary_child(node:Node):
 	node.get_parent().remove_child(node)
-	$Main/Primary.add_child(node)
+	$Main/MarginContainer2/Primary.add_child(node)
 
 func add_secondary_child(node:Node):
 	node.get_parent().remove_child(node)
-	$Main/Secondary/VBox.add_child(node)
+	$Main/MarginContainer3/Secondary/VBox.add_child(node)
 
 func clear_placeholders():
-	for child in $Main/Primary.get_children():
+	for child in $Main/MarginContainer2/Primary.get_children():
 		child.queue_free()
 
-	for child in $Main/Secondary/VBox.get_children():
+	for child in $Main/MarginContainer3/Secondary/VBox.get_children():
 		child.queue_free()		
 
 func set_secondary_visible(value):
-	$Main/Secondary.visible = value
-	$Main/Title/ShowSecondary.pressed = value
+	$Main/MarginContainer3/Secondary.visible = value
+	$Main/MarginContainer/Title/ShowSecondary.pressed = value
 	
 func hide_secondary_toggle():
-	$Main/Secondary.visible = false
-	$Main/Title/ShowSecondary.visible = false
+	$Main/MarginContainer3/Secondary.visible = false
+	$Main/MarginContainer/Title/ShowSecondary.visible = false
 	
 func set_label(text:String):
-	$Main/Title/Label.text = text
+	$Main/MarginContainer/Title/Label.text = text
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -50,8 +50,7 @@ func _ready():
 
 
 func _on_show_toggled(button_pressed):
-	$Main/Title/ShowSecondary
-	$Main/Secondary.visible = button_pressed
+	$Main/MarginContainer3/Secondary.visible = button_pressed
 
 func _on_skip_toggled(button_pressed):
 	print('skip toggled ' + String(button_pressed))

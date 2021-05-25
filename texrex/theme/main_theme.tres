@@ -5,13 +5,13 @@
 [ext_resource path="res://theme/panel_styleboxflat_dark.tres" type="StyleBox" id=3]
 [ext_resource path="res://theme/button_styleboxflat_normal.tres" type="StyleBox" id=4]
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.419608, 0.419608, 0.419608, 1 )
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.231373, 0.231373, 0.231373, 1 )
 
-[sub_resource type="StyleBoxLine" id=1]
+[sub_resource type="StyleBoxLine" id=3]
 content_margin_top = 0.0
 content_margin_bottom = 0.0
 color = Color( 0.219608, 0.219608, 0.219608, 1 )
@@ -19,12 +19,12 @@ grow_begin = 0.0
 grow_end = 0.0
 thickness = 2
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=4]
 content_margin_left = 6.0
 content_margin_right = 6.0
 bg_color = Color( 0.34902, 0.34902, 0.34902, 1 )
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=5]
 content_margin_left = 6.0
 content_margin_right = 6.0
 bg_color = Color( 0.419608, 0.419608, 0.419608, 1 )
@@ -39,11 +39,11 @@ Button/constants/hseparation = 2
 Button/fonts/font = null
 Button/styles/disabled = null
 Button/styles/focus = null
-Button/styles/hover = SubResource( 3 )
+Button/styles/hover = SubResource( 1 )
 Button/styles/normal = ExtResource( 4 )
-Button/styles/pressed = SubResource( 4 )
+Button/styles/pressed = SubResource( 2 )
 HSeparator/constants/separation = 15
-HSeparator/styles/separator = SubResource( 1 )
+HSeparator/styles/separator = SubResource( 3 )
 HSlider/icons/grabber = null
 HSlider/icons/grabber_disabled = null
 HSlider/icons/grabber_highlight = null
@@ -70,6 +70,6 @@ Tabs/icons/increment_highlight = null
 Tabs/styles/button = null
 Tabs/styles/button_pressed = null
 Tabs/styles/panel = null
-Tabs/styles/tab_bg = SubResource( 5 )
+Tabs/styles/tab_bg = SubResource( 4 )
 Tabs/styles/tab_disabled = null
-Tabs/styles/tab_fg = SubResource( 6 )
+Tabs/styles/tab_fg = SubResource( 5 )

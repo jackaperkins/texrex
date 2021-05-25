@@ -154,7 +154,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 116.0
 margin_right = 326.0
-margin_bottom = 240.0
+margin_bottom = 180.0
 
 [node name="open_file_dialog" type="FileDialog" parent="."]
 margin_left = 141.776

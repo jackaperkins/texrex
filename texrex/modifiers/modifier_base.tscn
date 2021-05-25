@@ -20,22 +20,29 @@ __meta__ = {
 }
 
 [node name="Main" type="VBoxContainer" parent="."]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 1014.0
-margin_bottom = 104.0
+margin_right = 1024.0
+margin_bottom = 114.0
 size_flags_vertical = 3
 theme = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Title" type="HBoxContainer" parent="Main"]
-margin_right = 1004.0
-margin_bottom = 37.0
+[node name="MarginContainer" type="MarginContainer" parent="Main"]
+margin_right = 1024.0
+margin_bottom = 47.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+
+[node name="Title" type="HBoxContainer" parent="Main/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 1014.0
+margin_bottom = 47.0
 size_flags_vertical = 0
 
-[node name="ShowSecondary" type="TextureButton" parent="Main/Title"]
+[node name="ShowSecondary" type="TextureButton" parent="Main/MarginContainer/Title"]
 margin_right = 21.0
 margin_bottom = 37.0
 mouse_default_cursor_shape = 2
@@ -45,7 +52,7 @@ texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
 stretch_mode = 2
 
-[node name="Label" type="Label" parent="Main/Title"]
+[node name="Label" type="Label" parent="Main/MarginContainer/Title"]
 margin_left = 25.0
 margin_right = 85.0
 margin_bottom = 37.0
@@ -58,7 +65,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Skip" type="TextureButton" parent="Main/Title"]
+[node name="Skip" type="TextureButton" parent="Main/MarginContainer/Title"]
 margin_left = 974.0
 margin_right = 1004.0
 margin_bottom = 37.0
@@ -73,26 +80,42 @@ __meta__ = {
 }
 
 [node name="VSeparator" type="HSeparator" parent="Main"]
-margin_top = 41.0
-margin_right = 1004.0
-margin_bottom = 56.0
+margin_top = 51.0
+margin_right = 1024.0
+margin_bottom = 66.0
 
-[node name="Primary" type="VBoxContainer" parent="Main"]
-margin_top = 60.0
-margin_right = 1004.0
-margin_bottom = 60.0
+[node name="MarginContainer2" type="MarginContainer" parent="Main"]
+margin_top = 70.0
+margin_right = 1024.0
+margin_bottom = 80.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
 
-[node name="Secondary" type="PanelContainer" parent="Main"]
-margin_top = 64.0
-margin_right = 1004.0
-margin_bottom = 94.0
-theme = ExtResource( 6 )
-
-[node name="VBox" type="VBoxContainer" parent="Main/Secondary"]
+[node name="Primary" type="VBoxContainer" parent="Main/MarginContainer2"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 994.0
+margin_right = 1014.0
 margin_bottom = 10.0
 
-[connection signal="toggled" from="Main/Title/ShowSecondary" to="." method="_on_show_toggled"]
-[connection signal="toggled" from="Main/Title/Skip" to="." method="_on_skip_toggled"]
+[node name="MarginContainer3" type="MarginContainer" parent="Main"]
+margin_top = 84.0
+margin_right = 1024.0
+margin_bottom = 114.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 20
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="Secondary" type="PanelContainer" parent="Main/MarginContainer3"]
+margin_left = 10.0
+margin_top = 20.0
+margin_right = 1014.0
+margin_bottom = 20.0
+theme = ExtResource( 6 )
+
+[node name="VBox" type="VBoxContainer" parent="Main/MarginContainer3/Secondary"]
+margin_right = 1004.0
+
+[connection signal="toggled" from="Main/MarginContainer/Title/ShowSecondary" to="." method="_on_show_toggled"]
+[connection signal="toggled" from="Main/MarginContainer/Title/Skip" to="." method="_on_skip_toggled"]
