@@ -20,10 +20,24 @@ func _ready():
 	view.render_target_v_flip = true
 	add_child(view)
 	
-	yield(get_tree(), "idle_frame")
-	yield(get_tree(), "idle_frame")
+	var texture:ViewportTexture
+	var image:Image
+
+	# dangerous scary loop where we spin waiting for the texture to render
+	while true:
+		texture = view.get_texture()
+		image = texture.get_data()
+		image.lock()
+		# we know our texture is done because the pixel in the corner isn't 0 alpha
+		if image.get_pixel(0,0).a != 0.0:
+			image.unlock()
+			break
+		image.unlock()
+		yield(get_tree(), "idle_frame")
 	
-	var texture = view.get_texture()
-	var image = texture.get_data()
+
+	image.lock()
+	print(image.get_pixel(0,0))
+	image.unlock()
 	tex.create_from_image(image)
 	$TextureRect.texture = tex

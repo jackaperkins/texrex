@@ -60,7 +60,10 @@ func _on_modifier_updated():
 			if modifier.skip:
 				modifier.image = image
 			else:
-				modifier.process_image(image)
+				var function = modifier.process_image(image)
+				# special case to wait for a  yield if our modifier is a coroutine
+				if function is GDScriptFunctionState && function.is_valid():
+					yield(function, "completed")
 			result.copy_from(modifier.image)
 		i -= 1
 		

@@ -2,14 +2,14 @@
 
 [ext_resource path="res://shaders/shader_demo_control.gd" type="Script" id=2]
 
-[sub_resource type="ViewportTexture" id=3]
+[sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("Viewport")
 
 [sub_resource type="SpatialMaterial" id=2]
 resource_local_to_scene = true
-albedo_texture = SubResource( 3 )
+albedo_texture = SubResource( 1 )
 
-[sub_resource type="SphereMesh" id=1]
+[sub_resource type="SphereMesh" id=3]
 
 [node name="Control" type="Control"]
 margin_right = 972.0
@@ -20,10 +20,11 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="."]
-margin_left = 12.0234
-margin_top = 281.164
-margin_right = 293.023
-margin_bottom = 537.164
+margin_left = 12.0
+margin_top = 49.0
+margin_right = 793.0
+margin_bottom = 537.0
+stretch_mode = 6
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -32,7 +33,7 @@ __meta__ = {
 
 [node name="MeshInstance" type="MeshInstance" parent="Control"]
 material_override = SubResource( 2 )
-mesh = SubResource( 1 )
+mesh = SubResource( 3 )
 material/0 = null
 
 [node name="Button" type="Button" parent="."]

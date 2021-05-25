@@ -20,11 +20,11 @@ _global_script_class_icons={
 
 [application]
 
-config/name="texrex"
+config/name="Texrex"
 run/main_scene="res://main.tscn"
 boot_splash/fullsize=false
 boot_splash/use_filter=false
-config/icon="res://macicon.png"
+config/icon="res://icons/texrex_app_icon.png"
 
 [input]
 
