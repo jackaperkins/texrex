@@ -1,19 +1,26 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://modifiers/modifier_contrast.tscn" type="PackedScene" id=2]
 [ext_resource path="res://modifiers/modifier_resolution.tscn" type="PackedScene" id=3]
 [ext_resource path="res://MenuButtonPopup.gd" type="Script" id=4]
 [ext_resource path="res://modifiers/modifier_noise.tscn" type="PackedScene" id=5]
+[ext_resource path="res://theme/main_theme.tres" type="Theme" id=6]
+[ext_resource path="res://theme/panel_styleboxflat_dark.tres" type="StyleBox" id=7]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 0.544922
-margin_top = -1.25992
-margin_right = 0.544922
-margin_bottom = -1.25989
+theme = ExtResource( 6 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color( 0.717647, 0.717647, 0.717647, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -93,7 +100,7 @@ __meta__ = {
 }
 
 [node name="Load" type="Button" parent="main_split/main area/Menubar/HBoxContainer"]
-margin_right = 42.0
+margin_right = 47.0
 margin_bottom = 30.0
 text = "Load"
 __meta__ = {
@@ -101,8 +108,8 @@ __meta__ = {
 }
 
 [node name="Save" type="Button" parent="main_split/main area/Menubar/HBoxContainer"]
-margin_left = 46.0
-margin_right = 87.0
+margin_left = 51.0
+margin_right = 98.0
 margin_bottom = 30.0
 text = "Save"
 __meta__ = {
@@ -115,6 +122,7 @@ margin_right = 1024.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 213.866, 0 )
 size_flags_horizontal = 3
+custom_styles/panel = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -122,40 +130,38 @@ __meta__ = {
 [node name="modifiers_container" type="VBoxContainer" parent="main_split/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = 0.529739
-margin_bottom = 0.529724
-custom_constants/separation = 0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+custom_constants/separation = 8
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Modifier Contrast" parent="main_split/Panel/modifiers_container" instance=ExtResource( 2 )]
 anchor_right = 0.0
-margin_right = 342.0
+margin_right = 326.0
 margin_bottom = 50.0
 
 [node name="Modifier Resolution" parent="main_split/Panel/modifiers_container" instance=ExtResource( 3 )]
-margin_top = 50.0
-margin_right = 342.0
-margin_bottom = 100.0
+margin_top = 58.0
+margin_right = 326.0
+margin_bottom = 108.0
 
 [node name="Container" parent="main_split/Panel/modifiers_container" instance=ExtResource( 5 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 100.0
-margin_right = 342.0
-margin_bottom = 233.0
-
-[node name="Modifier Resolution2" parent="main_split/Panel/modifiers_container" instance=ExtResource( 3 )]
-margin_top = 233.0
-margin_right = 342.0
-margin_bottom = 283.0
+margin_top = 116.0
+margin_right = 326.0
+margin_bottom = 240.0
 
 [node name="open_file_dialog" type="FileDialog" parent="."]
 margin_left = 141.776
 margin_top = 70.7754
 margin_right = 880.776
 margin_bottom = 540.775
+theme = ExtResource( 6 )
 window_title = "Open an Image"
 resizable = true
 mode_overrides_title = false

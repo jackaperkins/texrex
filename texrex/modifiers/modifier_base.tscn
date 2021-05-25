@@ -1,46 +1,43 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://modifiers/modifier.gd" type="Script" id=1]
 [ext_resource path="res://icons/eyecon.png" type="Texture" id=2]
 [ext_resource path="res://icons/eyecon_closed.png" type="Texture" id=3]
 [ext_resource path="res://icons/triangle_left.png" type="Texture" id=4]
 [ext_resource path="res://icons/triangle_down.png" type="Texture" id=5]
+[ext_resource path="res://theme/main_theme.tres" type="Theme" id=6]
 
 [node name="Modifier" type="PanelContainer"]
-self_modulate = Color( 0.498039, 0.498039, 0.498039, 1 )
 anchor_right = 1.0
 margin_left = -1.25989
 margin_right = -1.25989
 margin_bottom = 60.0
 rect_min_size = Vector2( 0, 50 )
+theme = ExtResource( 6 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Main" type="VBoxContainer" parent="."]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 1017.0
-margin_bottom = 98.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 1014.0
+margin_bottom = 104.0
 size_flags_vertical = 3
+theme = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer" type="Control" parent="Main"]
-margin_right = 1010.0
-margin_bottom = 10.0
-rect_min_size = Vector2( 0, 10 )
-
 [node name="Title" type="HBoxContainer" parent="Main"]
-margin_top = 14.0
-margin_right = 1010.0
-margin_bottom = 45.0
+margin_right = 1004.0
+margin_bottom = 37.0
+size_flags_vertical = 0
 
 [node name="ShowSecondary" type="TextureButton" parent="Main/Title"]
 margin_right = 21.0
-margin_bottom = 31.0
+margin_bottom = 37.0
 mouse_default_cursor_shape = 2
 toggle_mode = true
 pressed = true
@@ -50,8 +47,9 @@ stretch_mode = 2
 
 [node name="Label" type="Label" parent="Main/Title"]
 margin_left = 25.0
-margin_right = 78.0
-margin_bottom = 31.0
+margin_right = 85.0
+margin_bottom = 37.0
+size_flags_horizontal = 0
 size_flags_vertical = 3
 text = "Contrast
 "
@@ -61,9 +59,9 @@ __meta__ = {
 }
 
 [node name="Skip" type="TextureButton" parent="Main/Title"]
-margin_left = 980.0
-margin_right = 1010.0
-margin_bottom = 31.0
+margin_left = 974.0
+margin_right = 1004.0
+margin_bottom = 37.0
 hint_tooltip = "Skip"
 mouse_default_cursor_shape = 2
 size_flags_horizontal = 10
@@ -74,34 +72,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="VSeparator" type="HSeparator" parent="Main"]
+margin_top = 41.0
+margin_right = 1004.0
+margin_bottom = 56.0
+
 [node name="Primary" type="VBoxContainer" parent="Main"]
-margin_top = 49.0
-margin_right = 1010.0
-margin_bottom = 49.0
+margin_top = 60.0
+margin_right = 1004.0
+margin_bottom = 60.0
 
 [node name="Secondary" type="PanelContainer" parent="Main"]
-margin_top = 53.0
-margin_right = 1010.0
-margin_bottom = 77.0
-
-[node name="Spacer3" type="Control" parent="Main/Secondary"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 1003.0
-margin_bottom = 17.0
-rect_min_size = Vector2( 0, 10 )
+margin_top = 64.0
+margin_right = 1004.0
+margin_bottom = 94.0
+theme = ExtResource( 6 )
 
 [node name="VBox" type="VBoxContainer" parent="Main/Secondary"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 1003.0
-margin_bottom = 17.0
-
-[node name="Spacer2" type="Control" parent="Main"]
-margin_top = 81.0
-margin_right = 1010.0
-margin_bottom = 91.0
-rect_min_size = Vector2( 0, 10 )
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 994.0
+margin_bottom = 10.0
 
 [connection signal="toggled" from="Main/Title/ShowSecondary" to="." method="_on_show_toggled"]
 [connection signal="toggled" from="Main/Title/Skip" to="." method="_on_skip_toggled"]
