@@ -28,10 +28,6 @@ func _process(delta):
 # adds node into primary (always visible) slot
 func add_primary_child(node:Node):
 	node.get_parent().remove_child(node)
-	print(name)
-	print('first child: ' + get_child(0).name)
-	print($Main)
-	print($Main/MarginContainer)
 	$Main/MarginContainer2/Primary.add_child(node)
 
 # add node into secondary (toggleable) slot

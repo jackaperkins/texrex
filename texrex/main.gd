@@ -104,9 +104,26 @@ func preload_default():
 	
 func _on_Load_pressed():
 	print('loading file dialog')
+	var last_directory = ''
+	
+	var config = ConfigFile.new()
+	var err = config.load("user://settings.cfg")
+	if err == OK: # If not, something went wrong with the file loading
+		if config.has_section_key('memory', "last_directory"):
+			last_directory = config.get_value('memory', 'last_directory')
+			$open_file_dialog.current_dir = last_directory
 	$open_file_dialog.popup_centered_clamped(Vector2(800,600))
+	
 
 func _on_open_image(path_to_image):
+	var config = ConfigFile.new()
+	var err = config.load("user://settings.cfg")
+	if err != OK: # If not, something went wrong with the file loading
+		config = ConfigFile.new()
+	var path = path_to_image.rsplit("/", true, 1)[0]
+	config.set_value('memory', 'last_directory', path)
+	print('setting path memory! ' + path)
+	config.save('user://settings.cfg')
 	original_image.load(path_to_image)
 	image.copy_from(original_image)
 	process_all()
