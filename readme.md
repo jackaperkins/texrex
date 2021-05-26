@@ -1,5 +1,4 @@
-# Texrex 
-## Open Source Texture Smasher
+# Texrex - Open Source Texture Smasher
 
 ![](texrex/icons/texrex_icon_4xscaled.png)
 
