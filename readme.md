@@ -1,13 +1,19 @@
-# Texrex
+# Texrex 
+## Open Source Texture Smasher
 
 ![](texrex/icons/texrex_icon_4xscaled.png)
 
-## Open source texture smasher: resize, make seamless, palletize and other effects for lofi workflows
 
 The #1 goal is to make the workflow for lofi primative 3d texturing easy, especially when working from borrowed source material
 
 **App icon by Amon26, thanks!**
 
+Some features i'd like:
+- saving of project files, not just image export
+- good crop tool, easy support for non-square ratios
+- super good saving and loading workflow, no default Dialog guis!!
+- painting layers
+- a million weird effects and built-in pallettes
 
 ## Adding New Modifiers (WIP)
 ### Creating the scene
