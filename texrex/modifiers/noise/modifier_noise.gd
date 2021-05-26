@@ -1,5 +1,6 @@
 extends "res://modifiers/modifier.gd"
-onready var mat:ShaderMaterial = load('res://shaders/m_render_noise.tres')
+
+onready var mat:ShaderMaterial = load('res://modifiers/noise/m_render_noise.tres')
 
 var scale = 0.05
 var mode = 0

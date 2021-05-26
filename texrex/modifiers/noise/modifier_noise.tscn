@@ -1,0 +1,80 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://modifiers/modifier_base.tscn" type="PackedScene" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends \"res://modifiers/modifier.gd\"
+onready var mat:ShaderMaterial = load('res://modifiers/noise/m_render_noise.tres')
+
+var scale = 0.05
+var mode = 0
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	clear_placeholders()
+	add_primary_child($Noise)
+	set_label('Noise ' + String(scale))
+	
+	mat = mat.duplicate()
+	
+	var tabs = $Mode
+	tabs.add_tab(\"Brightness\")
+	tabs.add_tab(\"Hue Shift\")
+	tabs.add_tab(\"Rainbow\")
+	add_secondary_child(tabs)
+	
+
+func process_image(incoming:Image):
+	mat.set_shader_param('amount', scale)
+	mat.set_shader_param('mode', mode)
+	
+	# required to feed our image into a shadermaterial and get it back!
+	var image_texture:ImageTexture = ImageTexture.new()
+	image_texture.create_from_image(incoming)
+	mat.set_shader_param('tex', image_texture)
+	
+	yield(process_shader(mat, incoming.get_size(), image), 'completed')
+	needs_processing = false
+
+
+func _on_Noise_value_changed(value):
+	scale = pow(value, 4)
+	needs_processing = true
+	set_label('Noise ' + String(scale))
+	emit_signal(\"updated\")
+
+
+func _on_Mode_tab_changed(tab):
+	mode = tab
+	needs_processing = true
+	emit_signal(\"updated\")
+"
+
+[node name="Container" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Modifier Noise" parent="." instance=ExtResource( 1 )]
+anchor_right = 0.0
+margin_left = 0.0
+margin_right = 1024.0
+margin_bottom = 128.0
+script = SubResource( 1 )
+
+[node name="Noise" type="HSlider" parent="Modifier Noise"]
+margin_right = 1024.0
+margin_bottom = 16.0
+max_value = 1.0
+step = 0.0
+
+[node name="Mode" type="Tabs" parent="Modifier Noise"]
+margin_right = 1024.0
+margin_bottom = 128.0
+tab_align = 0
+
+[connection signal="value_changed" from="Modifier Noise/Noise" to="Modifier Noise" method="_on_Noise_value_changed"]
+[connection signal="tab_changed" from="Modifier Noise/Mode" to="Modifier Noise" method="_on_Mode_tab_changed"]

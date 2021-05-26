@@ -22,7 +22,7 @@ __meta__ = {
 
 [node name="Main" type="VBoxContainer" parent="."]
 margin_right = 1024.0
-margin_bottom = 134.0
+margin_bottom = 118.0
 size_flags_vertical = 3
 theme = ExtResource( 6 )
 __meta__ = {
@@ -90,11 +90,11 @@ margin_bottom = 60.0
 [node name="MarginContainer2" type="MarginContainer" parent="Main"]
 margin_top = 64.0
 margin_right = 1024.0
-margin_bottom = 94.0
+margin_bottom = 84.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
-custom_constants/margin_bottom = 20
+custom_constants/margin_bottom = 10
 
 [node name="Primary" type="VBoxContainer" parent="Main/MarginContainer2"]
 margin_left = 10.0
@@ -103,15 +103,16 @@ margin_right = 1014.0
 margin_bottom = 10.0
 
 [node name="MarginContainer3" type="MarginContainer" parent="Main"]
-margin_top = 98.0
+margin_top = 88.0
 margin_right = 1024.0
-margin_bottom = 128.0
+margin_bottom = 118.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 20
 
 [node name="Secondary" type="PanelContainer" parent="Main/MarginContainer3"]
+self_modulate = Color( 0.882353, 0.882353, 0.882353, 1 )
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 1014.0

@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=2]
 
-[ext_resource path="res://shaders/noise.shader" type="Shader" id=1]
+[ext_resource path="res://modifiers/noise/noise.shader" type="Shader" id=1]
 [ext_resource path="res://macicon.png" type="Texture" id=2]
 
 [resource]

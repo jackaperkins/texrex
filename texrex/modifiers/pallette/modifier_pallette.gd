@@ -1,5 +1,5 @@
 extends "res://modifiers/modifier.gd"
-onready var mat:ShaderMaterial = load('res://shaders/m_render_pallette.tres')
+onready var mat:ShaderMaterial = load('res://modifiers/pallette/m_render_pallette.tres')
 
 var count
 

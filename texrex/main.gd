@@ -8,9 +8,9 @@ var result = Image.new()
 var texture = ImageTexture.new() # texture version that can be shown inside a sprite
 
 const modifier_resolution = preload("res://modifiers/modifier_resolution.tscn")
-const modifier_constrast = preload("res://modifiers/modifier_contrast.tscn")
-const modifier_pallette = preload("res://modifiers/modifier_pallette.tscn")
-const modifier_noise = preload("res://modifiers/modifier_noise.tscn")
+const modifier_constrast = preload("res://modifiers/contrast/modifier_contrast.tscn")
+const modifier_pallette = preload("res://modifiers/pallette/modifier_pallette.tscn")
+const modifier_noise = preload("res://modifiers/noise/modifier_noise.tscn")
 
 var modifiers = []
 
@@ -20,6 +20,7 @@ func _ready():
 	#instance default modifiers
 	for child in $main_split/Panel/modifiers_container.get_children():
 		child.queue_free()
+	add_modifier(modifier_constrast)
 	add_modifier(modifier_pallette)
 	add_modifier(modifier_noise)
 	add_modifier(modifier_resolution)

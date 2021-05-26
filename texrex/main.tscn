@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
-[ext_resource path="res://modifiers/modifier_contrast.tscn" type="PackedScene" id=2]
+[ext_resource path="res://modifiers/contrast/modifier_contrast.tscn" type="PackedScene" id=2]
 [ext_resource path="res://modifiers/modifier_resolution.tscn" type="PackedScene" id=3]
 [ext_resource path="res://MenuButtonPopup.gd" type="Script" id=4]
-[ext_resource path="res://modifiers/modifier_noise.tscn" type="PackedScene" id=5]
+[ext_resource path="res://modifiers/noise/modifier_noise.tscn" type="PackedScene" id=5]
 [ext_resource path="res://theme/main_theme.tres" type="Theme" id=6]
 [ext_resource path="res://theme/panel_styleboxflat_dark.tres" type="StyleBox" id=7]
 
@@ -154,7 +154,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 116.0
 margin_right = 326.0
-margin_bottom = 230.0
+margin_bottom = 244.0
 
 [node name="open_file_dialog" type="FileDialog" parent="."]
 margin_left = 141.776
