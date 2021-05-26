@@ -9,7 +9,7 @@ func _ready():
 	_update_ui()
 	
 func _update_ui():
-	$Label.text = 'Resolution ' + String(pow(2,power))
+	$Label.text = 'Resolution ' + String(pow(2,power)) + 'x' + String(pow(2,power))
 
 func process_image(incoming:Image):
 	## pass in

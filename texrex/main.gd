@@ -20,8 +20,8 @@ func _ready():
 	#instance default modifiers
 	for child in $main_split/Panel/modifiers_container.get_children():
 		child.queue_free()
-	add_modifier(modifier_constrast)
 	add_modifier(modifier_pallette)
+	add_modifier(modifier_constrast)
 	add_modifier(modifier_noise)
 	add_modifier(modifier_resolution)
 
