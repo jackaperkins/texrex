@@ -9,13 +9,13 @@ The #1 goal is to make the workflow for lofi primative 3d texturing easy, especi
 **App icon by Amon26, thanks!**
 
 
-# Adding New Modifiers (WIP)
-## Creating the scene
+## Adding New Modifiers (WIP)
+### Creating the scene
 You'll need to create a new scene with a PanelContainer as the root element. Drag an instance of the modifier_base.tscn as a child of it. It will come with the modifier.gd base class attached, remove it and add your own in place. Your script will have to extend modifier to work. Any controls you want to have put inside the modifier will need to be
 
 ![](docs/example_modifier_scene.PNG)
 
-## Adding the controls to the modifier base slots
+### Adding the controls to the modifier base slots
 There are two functions to moving your custom controls inside the primary and secondary 'slots' of the modifier base:
 
 `add_primary_child(node)`
@@ -26,6 +26,6 @@ and
 
 ![](docs/example_modifier_children.PNG)
 
-## Modifier files
+### Modifier files
 its nice to put your modifiers in the same folder with a naming convention like this
 ![](docs/example_modifier_layout.PNG)
