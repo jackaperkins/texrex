@@ -32,44 +32,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PreBrightness" type="HBoxContainer" parent="Modifier"]
-margin_right = 1010.0
-margin_bottom = 118.0
-
-[node name="Label" type="Label" parent="Modifier/PreBrightness"]
-margin_top = 50.0
-margin_right = 120.0
-margin_bottom = 67.0
-rect_min_size = Vector2( 120, 0 )
-text = "Pre Brightness"
-
-[node name="PreBrightnessRange" type="HSlider" parent="Modifier/PreBrightness"]
-margin_left = 124.0
-margin_right = 1010.0
-margin_bottom = 16.0
-size_flags_horizontal = 3
-min_value = -1.0
-max_value = 1.0
-step = 0.05
-tick_count = 3
-ticks_on_borders = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="PostBrightness" type="HBoxContainer" parent="Modifier"]
 margin_right = 1010.0
 margin_bottom = 118.0
 
 [node name="Label" type="Label" parent="Modifier/PostBrightness"]
 margin_top = 50.0
-margin_right = 120.0
+margin_right = 100.0
 margin_bottom = 67.0
-rect_min_size = Vector2( 120, 0 )
-text = "Post Brightness"
+rect_min_size = Vector2( 100, 0 )
+text = "Brightness"
 
-[node name="PostBrightnessRange" type="HSlider" parent="Modifier/PostBrightness"]
-margin_left = 124.0
+[node name="BrightnessRange" type="HSlider" parent="Modifier/PostBrightness"]
+margin_left = 104.0
 margin_right = 1010.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
@@ -83,5 +58,4 @@ __meta__ = {
 }
 
 [connection signal="value_changed" from="Modifier/Contrast" to="Modifier" method="_on_Contrast_value_changed"]
-[connection signal="value_changed" from="Modifier/PreBrightness/PreBrightnessRange" to="Modifier" method="_on_PreBrightness_value_changed"]
-[connection signal="value_changed" from="Modifier/PostBrightness/PostBrightnessRange" to="Modifier" method="_on_PostBrightness_value_changed"]
+[connection signal="value_changed" from="Modifier/PostBrightness/BrightnessRange" to="Modifier" method="_on_Brightness_value_changed"]

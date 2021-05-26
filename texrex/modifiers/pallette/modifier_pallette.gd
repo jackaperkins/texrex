@@ -1,15 +1,20 @@
 extends "res://modifiers/modifier.gd"
 onready var mat:ShaderMaterial = load('res://modifiers/pallette/m_render_pallette.tres')
 
-var count
+var count = 0
+var dither = false
+
+var pallette:HSlider
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	count = $Pallette.value
+	pallette = $Pallette
+	count = pallette.value
 	clear_placeholders()
 	mat = mat.duplicate()
 	set_secondary_visible(false)
 	add_primary_child($Pallette)
+	add_primary_child($Dither)
 	hide_secondary_toggle()
 	_update_ui()
 
@@ -20,6 +25,7 @@ func _update_ui():
 
 func process_image(incoming:Image):
 	mat.set_shader_param('count', count)
+	mat.set_shader_param('dither', dither)
 	# required to feed our image into a shadermaterial and get it back!
 	var image_texture:ImageTexture = ImageTexture.new()
 	image_texture.create_from_image(incoming)
@@ -32,5 +38,13 @@ func _on_Pallette_value_changed(value):
 	count = value
 	print('pallette changed in modifier')
 	_update_ui()
+	needs_processing = true
+	emit_signal('updated')
+
+
+func _on_Dither_toggled(button_pressed):
+	dither = button_pressed
+	if button_pressed:
+		pallette.value = min(pallette.value,8)
 	needs_processing = true
 	emit_signal('updated')

@@ -22,7 +22,7 @@ __meta__ = {
 
 [node name="Main" type="VBoxContainer" parent="."]
 margin_right = 1024.0
-margin_bottom = 118.0
+margin_bottom = 310.0
 size_flags_vertical = 3
 theme = ExtResource( 6 )
 __meta__ = {
@@ -44,8 +44,21 @@ margin_right = 1014.0
 margin_bottom = 46.0
 size_flags_vertical = 0
 
+[node name="Skip" type="TextureButton" parent="Main/MarginContainer/Title"]
+margin_right = 30.0
+margin_bottom = 41.0
+hint_tooltip = "Skip"
+mouse_default_cursor_shape = 2
+toggle_mode = true
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Label" type="Label" parent="Main/MarginContainer/Title"]
-margin_right = 68.0
+margin_left = 34.0
+margin_right = 102.0
 margin_bottom = 41.0
 size_flags_horizontal = 0
 size_flags_vertical = 3
@@ -58,39 +71,27 @@ __meta__ = {
 }
 
 [node name="ShowSecondary" type="TextureButton" parent="Main/MarginContainer/Title"]
-margin_left = 72.0
-margin_right = 93.0
+margin_left = 983.0
+margin_right = 1004.0
 margin_bottom = 41.0
 mouse_default_cursor_shape = 2
+size_flags_horizontal = 10
 toggle_mode = true
 pressed = true
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
 stretch_mode = 2
 
-[node name="Skip" type="TextureButton" parent="Main/MarginContainer/Title"]
-margin_left = 974.0
-margin_right = 1004.0
-margin_bottom = 41.0
-hint_tooltip = "Skip"
-mouse_default_cursor_shape = 2
-size_flags_horizontal = 10
-toggle_mode = true
-texture_normal = ExtResource( 2 )
-texture_pressed = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="VSeparator" type="HSeparator" parent="Main"]
 margin_top = 45.0
 margin_right = 1024.0
-margin_bottom = 60.0
+margin_bottom = 55.0
+custom_constants/separation = 10
 
 [node name="MarginContainer2" type="MarginContainer" parent="Main"]
-margin_top = 64.0
+margin_top = 59.0
 margin_right = 1024.0
-margin_bottom = 84.0
+margin_bottom = 79.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
@@ -103,9 +104,9 @@ margin_right = 1014.0
 margin_bottom = 10.0
 
 [node name="MarginContainer3" type="MarginContainer" parent="Main"]
-margin_top = 88.0
+margin_top = 83.0
 margin_right = 1024.0
-margin_bottom = 118.0
+margin_bottom = 113.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
@@ -122,5 +123,5 @@ theme = ExtResource( 6 )
 [node name="VBox" type="VBoxContainer" parent="Main/MarginContainer3/Secondary"]
 margin_right = 1004.0
 
-[connection signal="toggled" from="Main/MarginContainer/Title/ShowSecondary" to="." method="_on_show_toggled"]
 [connection signal="toggled" from="Main/MarginContainer/Title/Skip" to="." method="_on_skip_toggled"]
+[connection signal="toggled" from="Main/MarginContainer/Title/ShowSecondary" to="." method="_on_show_toggled"]

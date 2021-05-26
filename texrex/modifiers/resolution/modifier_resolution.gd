@@ -6,18 +6,14 @@ var power = 3
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	power = $Resolution.value
+	add_primary_child($Resolution)
 	_update_ui()
+	hide_secondary_toggle()
 	
 func _update_ui():
-	$Label.text = 'Resolution ' + String(pow(2,power)) + 'x' + String(pow(2,power))
+	set_label('Resolution ' + String(pow(2,power)) + 'x' + String(pow(2,power)))
 
 func process_image(incoming:Image):
-	## pass in
-#	print('about to shader process...')
-#	yield(process_shader(mat, Vector2(256,256), image), 'completed')
-#	print('finished after yield!')
-#	needs_processing = false
-#	return
 	image.copy_from(incoming)
 	image.lock()
 #	image.set_pixel(rand_range(3,30),30, Color(0,0,0.0))
@@ -29,7 +25,6 @@ func process_image(incoming:Image):
 
 func _on_Resolution_value_changed(value):
 	power = value
-	print('resolution changed in modifier')
 	_update_ui()
 	needs_processing = true
 	emit_signal('updated')

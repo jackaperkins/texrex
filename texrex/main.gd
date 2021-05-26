@@ -7,7 +7,7 @@ var result = Image.new()
 
 var texture = ImageTexture.new() # texture version that can be shown inside a sprite
 
-const modifier_resolution = preload("res://modifiers/modifier_resolution.tscn")
+const modifier_resolution = preload("res://modifiers/resolution/modifier_resolution.tscn")
 const modifier_constrast = preload("res://modifiers/contrast/modifier_contrast.tscn")
 const modifier_pallette = preload("res://modifiers/pallette/modifier_pallette.tscn")
 const modifier_noise = preload("res://modifiers/noise/modifier_noise.tscn")

@@ -20,7 +20,7 @@ __meta__ = {
 anchor_right = 0.0
 margin_left = 0.0
 margin_right = 214.0
-margin_bottom = 128.0
+margin_bottom = 118.0
 script = ExtResource( 3 )
 
 [node name="Pallette" type="HSlider" parent="Modifier Pallette"]
@@ -34,4 +34,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Dither" type="CheckBox" parent="Modifier Pallette"]
+margin_right = 214.0
+margin_bottom = 118.0
+text = "Dither"
+
 [connection signal="value_changed" from="Modifier Pallette/Pallette" to="Modifier Pallette" method="_on_Pallette_value_changed"]
+[connection signal="toggled" from="Modifier Pallette/Dither" to="Modifier Pallette" method="_on_Dither_toggled"]

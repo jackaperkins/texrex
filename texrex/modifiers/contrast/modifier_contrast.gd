@@ -3,16 +3,15 @@ extends "res://modifiers/modifier.gd"
 onready var mat:ShaderMaterial = load('res://modifiers/contrast/m_render_contrast.tres')
 
 var contrast = 1
-var pre_brightness = 0
-var post_brightness = 0
+var brightness = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	contrast = $Contrast.value
 	add_primary_child($Contrast)
-	add_secondary_child($PreBrightness)
-	add_secondary_child($PostBrightness)
+	add_primary_child($PostBrightness)
 	_update_ui()
+	hide_secondary_toggle()
 	
 func _process(delta):
 	._process(delta)
@@ -22,8 +21,7 @@ func _update_ui():
 
 func process_image(incoming:Image):
 	mat.set_shader_param('contrast', contrast)
-	mat.set_shader_param('preBrightness', pre_brightness)
-	mat.set_shader_param('postBrightness', post_brightness)
+	mat.set_shader_param('brightness', brightness)
 	
 	# required to feed our image into a shadermaterial and get it back!
 	var image_texture:ImageTexture = ImageTexture.new()
@@ -40,12 +38,7 @@ func _on_Contrast_value_changed(value):
 	needs_processing = true
 	emit_signal('updated')
 
-func _on_PreBrightness_value_changed(value):
-	pre_brightness = value
-	needs_processing = true
-	emit_signal('updated')
-
-func _on_PostBrightness_value_changed(value):
-	post_brightness = value
+func _on_Brightness_value_changed(value):
+	brightness = value
 	needs_processing = true
 	emit_signal('updated')

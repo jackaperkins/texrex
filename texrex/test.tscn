@@ -1,0 +1,27 @@
+[gd_scene format=2]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="HSplitContainer"]
+self_modulate = Color( 1, 0.568627, 0.568627, 1 )
+margin_right = 506.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+
+[node name="Panel2" type="Panel" parent="HSplitContainer"]
+margin_left = 518.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
