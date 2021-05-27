@@ -1,5 +1,4 @@
 extends "res://modifiers/modifier.gd"
-onready var mat = load('res://shaders/shader_tester_material.tres')
 
 var power = 3
 
@@ -15,10 +14,6 @@ func _update_ui():
 
 func process_image(incoming:Image):
 	image.copy_from(incoming)
-	image.lock()
-#	image.set_pixel(rand_range(3,30),30, Color(0,0,0.0))
-#	image.set_pixel(rand_range(3,30),32, Color(0,0,1.0))
-	image.unlock()
 	var size = pow(2, power)
 	image.resize(size,size, Image.INTERPOLATE_NEAREST)
 	needs_processing = false

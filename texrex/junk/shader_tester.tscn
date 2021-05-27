@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://shaders/shader_demo_control.gd" type="Script" id=2]
+[ext_resource path="res://shaders/shader_demo_control.gd" type="Script" id=1]
 
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("Viewport")
@@ -14,7 +14,7 @@ albedo_texture = SubResource( 1 )
 [node name="Control" type="Control"]
 margin_right = 972.0
 margin_bottom = 605.0
-script = ExtResource( 2 )
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

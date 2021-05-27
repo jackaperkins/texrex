@@ -5,7 +5,11 @@ var image = Image.new()
 
 var result = Image.new()
 
+onready var modifiers_container = $main_split/Panel/VBoxContainer/modifiers_container
+
 var texture = ImageTexture.new() # texture version that can be shown inside a sprite
+
+onready var renderIndicator:Panel = $"main_split/main area/Menubar/HBoxContainer/Container/RenderIndicator"
 
 const modifier_resolution = preload("res://modifiers/resolution/modifier_resolution.tscn")
 const modifier_constrast = preload("res://modifiers/contrast/modifier_contrast.tscn")
@@ -18,7 +22,7 @@ var is_dragging = false
 
 func _ready():
 	#instance default modifiers
-	for child in $main_split/Panel/modifiers_container.get_children():
+	for child in modifiers_container.get_children():
 		child.queue_free()
 	add_modifier(modifier_pallette)
 	add_modifier(modifier_constrast)
@@ -32,7 +36,7 @@ func process_all():
 
 func add_modifier(scene):
 	var mod = scene.instance()
-	$main_split/Panel/modifiers_container.add_child(mod)
+	modifiers_container.add_child(mod)
 	
 	# we use find_modifier to grab the actual modifier node
 	# as the child class scenes will wrap it in another node
@@ -65,6 +69,7 @@ func _on_modifier_updated():
 				# special case to wait for a  yield if our modifier is a coroutine
 				if function is GDScriptFunctionState && function.is_valid():
 					yield(function, "completed")
+					renderIndicator.set_rotation(renderIndicator.get_rotation()+0.2)
 			result.copy_from(modifier.image)
 		i -= 1
 		

@@ -41,4 +41,4 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 quality/driver/fallback_to_gles2=true
-environment/default_environment="res://default_env.tres"
+environment/default_clear_color=Color( 0.333333, 0.309804, 0.309804, 1 )
