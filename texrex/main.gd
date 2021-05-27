@@ -6,6 +6,7 @@ var image = Image.new()
 var result = Image.new()
 
 onready var modifiers_container = $main_split/Panel/VBoxContainer/modifiers_container
+onready var file_name_label = $"main_split/main area/Menubar/HBoxContainer/PanelContainer/Filename"
 
 var texture = ImageTexture.new() # texture version that can be shown inside a sprite
 
@@ -128,6 +129,7 @@ func _on_open_image(path_to_image):
 	var path = path_to_image.rsplit("/", true, 1)[0]
 	config.set_value('memory', 'last_directory', path)
 	print('setting path memory! ' + path)
+	file_name_label.text = path_to_image
 	config.save('user://settings.cfg')
 	original_image.load(path_to_image)
 	image.copy_from(original_image)

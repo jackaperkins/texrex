@@ -1,0 +1,74 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://junk/Item.tscn" type="PackedScene" id=1]
+[ext_resource path="res://junk/stack.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Control" type="Control"]
+anchor_left = 0.000921756
+anchor_top = 0.00157313
+anchor_right = 1.00092
+anchor_bottom = 1.00157
+margin_left = -2.3613
+margin_top = 0.23677
+margin_right = -2.36133
+margin_bottom = 0.236816
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = 193.0
+margin_top = 69.0
+margin_right = 464.0
+margin_bottom = 566.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 11.0
+margin_top = 12.0
+margin_right = -11.0
+margin_bottom = -12.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Item" parent="Panel/VBoxContainer" instance=ExtResource( 1 )]
+margin_bottom = 70.0
+
+[node name="Item2" parent="Panel/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 74.0
+margin_bottom = 144.0
+
+[node name="Item3" parent="Panel/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 148.0
+margin_bottom = 218.0
+
+[node name="Item4" parent="Panel/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 222.0
+margin_bottom = 292.0
+
+[node name="Item5" parent="Panel/VBoxContainer" instance=ExtResource( 1 )]
+margin_top = 296.0
+margin_bottom = 366.0
+
+[node name="PreviewBar" type="Panel" parent="Panel"]
+margin_left = 2.758
+margin_top = 4.973
+margin_right = 270.758
+margin_bottom = 11.973
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
