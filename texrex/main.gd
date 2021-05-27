@@ -6,10 +6,10 @@ var image = Image.new()
 var result = Image.new()
 
 onready var modifiers_container = $main_split/Panel/VBoxContainer/modifiers_container
-onready var file_name_label = $"main_split/main area/Menubar/HBoxContainer/PanelContainer/Filename"
+onready var file_name_label = $"main_split/main area/VBoxContainer/Menubar/HBoxContainer/PanelContainer/Filename"
 onready var drop_visualizer = $main_split/Panel/DropVisualizer
-onready var renderIndicator:Panel = $"main_split/main area/Menubar/HBoxContainer/Container/RenderIndicator"
-
+onready var renderIndicator:Panel = $"main_split/main area/VBoxContainer/Menubar/HBoxContainer/Container/RenderIndicator"
+onready var bottom_info = $"main_split/main area/VBoxContainer/BottomBar/BottomInfo"
 var texture = ImageTexture.new() # texture version that can be shown inside a sprite
 
 
@@ -190,3 +190,7 @@ func _on_save_file_dialog_file_selected(path):
 	result.save_png(path)
 	pass # Replace with function body.
 	
+
+
+func _on_InfoTimer_timeout():
+	bottom_info.text = 'memory ' + String(OS.get_static_memory_usage()/1048576) + ' MB'
