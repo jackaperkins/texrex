@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ui/AddModifiersPopup.gd" type="Script" id=1]
+
+[node name="AddModifiers" type="Button"]
+margin_right = 381.0
+margin_bottom = 21.0
+text = "Add Modifier ..."
+script = ExtResource( 1 )
+
+[node name="PopupMenu" type="PopupMenu" parent="."]
+margin_top = 25.0
+margin_right = 381.0
+margin_bottom = 104.0
+
+[connection signal="button_down" from="." to="." method="_on_AddModifiers_button_down"]
+[connection signal="index_pressed" from="PopupMenu" to="." method="_on_PopupMenu_index_pressed"]

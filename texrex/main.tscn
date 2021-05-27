@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://modifiers/contrast/modifier_contrast.tscn" type="PackedScene" id=2]
 [ext_resource path="res://fonts/font_vera_hint.tres" type="DynamicFont" id=3]
+[ext_resource path="res://ui/AddModifiers.tscn" type="PackedScene" id=4]
 [ext_resource path="res://theme/main_theme.tres" type="Theme" id=6]
 [ext_resource path="res://theme/panel_styleboxflat_dark.tres" type="StyleBox" id=7]
 
@@ -72,8 +73,8 @@ __meta__ = {
 }
 
 [node name="main area" type="Control" parent="main_split"]
-margin_right = 696.0
-margin_bottom = 600.0
+margin_right = 867.0
+margin_bottom = 768.0
 rect_min_size = Vector2( 149.689, 0 )
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
@@ -86,11 +87,11 @@ __meta__ = {
 }
 
 [node name="Menubar" type="PanelContainer" parent="main_split/main area/VBoxContainer"]
-margin_right = 696.0
+margin_right = 867.0
 margin_bottom = 21.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="main_split/main area/VBoxContainer/Menubar"]
-margin_right = 696.0
+margin_right = 867.0
 margin_bottom = 21.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -115,7 +116,7 @@ __meta__ = {
 
 [node name="PanelContainer" type="Panel" parent="main_split/main area/VBoxContainer/Menubar/HBoxContainer"]
 margin_left = 102.0
-margin_right = 652.0
+margin_right = 823.0
 margin_bottom = 21.0
 size_flags_horizontal = 3
 custom_styles/panel = ExtResource( 7 )
@@ -135,8 +136,8 @@ __meta__ = {
 }
 
 [node name="Container" type="Control" parent="main_split/main area/VBoxContainer/Menubar/HBoxContainer"]
-margin_left = 656.0
-margin_right = 696.0
+margin_left = 827.0
+margin_right = 867.0
 margin_bottom = 21.0
 rect_min_size = Vector2( 40, 0 )
 
@@ -164,9 +165,9 @@ __meta__ = {
 }
 
 [node name="BottomBar" type="Control" parent="main_split/main area/VBoxContainer"]
-margin_top = 580.0
-margin_right = 696.0
-margin_bottom = 600.0
+margin_top = 748.0
+margin_right = 867.0
+margin_bottom = 768.0
 rect_min_size = Vector2( 0, 20 )
 size_flags_vertical = 10
 
@@ -182,9 +183,9 @@ __meta__ = {
 }
 
 [node name="Panel" type="Panel" parent="main_split"]
-margin_left = 708.0
-margin_right = 1024.0
-margin_bottom = 600.0
+margin_left = 879.0
+margin_right = 1280.0
+margin_bottom = 768.0
 rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 3
 custom_styles/panel = ExtResource( 7 )
@@ -203,26 +204,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OptionButton" type="OptionButton" parent="main_split/Panel/VBoxContainer"]
-margin_right = 296.0
-margin_bottom = 21.0
-text = "Add Modifiers"
-items = [ "Add Modifiers", null, false, 0, null, "Contrast", null, false, 1, null, "Noise", null, false, 2, null ]
-selected = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="AddModifiers" parent="main_split/Panel/VBoxContainer" instance=ExtResource( 4 )]
 
 [node name="VSeparator" type="HSeparator" parent="main_split/Panel/VBoxContainer"]
 modulate = Color( 1, 1, 1, 0 )
 margin_top = 25.0
-margin_right = 296.0
+margin_right = 381.0
 margin_bottom = 45.0
 custom_constants/separation = 20
 
 [node name="modifiers_container" type="VBoxContainer" parent="main_split/Panel/VBoxContainer"]
 margin_top = 49.0
-margin_right = 296.0
+margin_right = 381.0
 margin_bottom = 158.0
 custom_constants/separation = 12
 __meta__ = {
@@ -231,7 +224,7 @@ __meta__ = {
 
 [node name="Modifier Contrast" parent="main_split/Panel/VBoxContainer/modifiers_container" instance=ExtResource( 2 )]
 anchor_right = 0.0
-margin_right = 296.0
+margin_right = 381.0
 margin_bottom = 109.0
 
 [node name="DropVisualizer" type="Panel" parent="main_split/Panel"]

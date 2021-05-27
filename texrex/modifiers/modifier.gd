@@ -15,7 +15,7 @@ onready var move_button = $Main/MarginContainer/MoveButton
 # UI stuff
 func _process(delta):
 	pass
-	
+
 
 func add_primary_child(node:Node):
 	node.get_parent().remove_child(node)
@@ -31,16 +31,16 @@ func clear_placeholders():
 		child.queue_free()
 
 	for child in $Main/MarginContainer3/Secondary/VBox.get_children():
-		child.queue_free()		
+		child.queue_free()
 
 func set_secondary_visible(value):
 	$Main/MarginContainer3.visible = value
 	$Main/MarginContainer/Title/ShowSecondary.pressed = value
-	
+
 func hide_secondary_toggle():
 	$Main/MarginContainer3.visible = false
 	$Main/MarginContainer/Title/ShowSecondary.visible = false
-	
+
 func set_label(text:String):
 	$Main/MarginContainer/Title/Label.text = text
 
@@ -53,7 +53,6 @@ func _on_show_toggled(button_pressed):
 	$Main/MarginContainer3.visible = button_pressed
 
 func _on_skip_toggled(button_pressed):
-	print('skip toggled ' + String(button_pressed))
 	skip = button_pressed
 	needs_processing = true
 	emit_signal('updated')
@@ -74,7 +73,7 @@ func process_shader(material:Material, canvas_size:Vector2, result_image):
 	view.add_child(rect)
 	view.render_target_v_flip = true
 	add_child(view)
-	
+
 	var texture:ViewportTexture
 	var image_data:Image
 
@@ -89,14 +88,10 @@ func process_shader(material:Material, canvas_size:Vector2, result_image):
 			result_image.copy_from(image_data)
 			break
 		image_data.unlock()
-		print('viewport yield.. waiting a frame')
 		yield(get_tree(), "idle_frame")
-	
-
 
 func _on_MoveHandle_button_down():
 	modifier_parent.start_drag(get_parent()) #get parent here is hacky + assumes we're wrapped.. okay iguess
- 
 
 func _on_MoveHandle_button_up():
 	modifier_parent.end_drag()

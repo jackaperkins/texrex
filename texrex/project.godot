@@ -26,6 +26,11 @@ boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="res://icons/texrex_icon_4xscaled.png"
 
+[display]
+
+window/size/width=1280
+window/size/height=768
+
 [input]
 
 middle_mouse={

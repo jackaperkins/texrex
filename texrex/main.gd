@@ -12,6 +12,8 @@ onready var file_name_label = $"main_split/main area/VBoxContainer/Menubar/HBoxC
 onready var drop_visualizer = $main_split/Panel/DropVisualizer
 onready var renderIndicator:Panel = $"main_split/main area/VBoxContainer/Menubar/HBoxContainer/Container/RenderIndicator"
 onready var bottom_info = $"main_split/main area/VBoxContainer/BottomBar/BottomInfo"
+onready var modifier_box = $main_split/Panel/VBoxContainer/AddModifiers
+
 var texture = ImageTexture.new() # texture version that can be shown inside a sprite
 
 
@@ -36,10 +38,12 @@ func _ready():
 	drop_visualizer.visible = false
 	for child in modifiers_container.get_children():
 		child.queue_free()
-	add_modifier(modifier_pallette)
-	add_modifier(modifier_constrast)
-	add_modifier(modifier_noise)
-	add_modifier(modifier_resolution)
+		
+	modifier_box.connect("add_modifier", self, "prepend_modifier")
+	prepend_modifier(modifier_resolution)
+#	prepend_modifier(modifier_pallette)
+#	prepend_modifier(modifier_constrast)
+#	prepend_modifier(modifier_noise)
 
 
 func modifier_order_updated():
@@ -52,16 +56,18 @@ func process_all():
 	modifiers[modifiers.size()-1].needs_processing = true
 	_on_modifier_updated()
 
-func add_modifier(scene):
+
+func prepend_modifier(scene:PackedScene):
 	var mod = scene.instance()
 	modifiers_container.add_child(mod)
-	
+	modifiers_container.move_child(mod, 0)
+#	print(modifiers_container.get_child_count())
 	# we use find_modifier to grab the actual modifier node
 	# as the child class scenes will wrap it in another node
 	var modifier:Modifier = find_modifier(mod)
 	modifier.connect("updated", self, "_on_modifier_updated")
 	modifier.modifier_parent = self #this is bad? should we use signals? (yes)
-	modifiers.append(modifier)
+	modifiers.push_front(modifier)
 	
 func start_drag(node):
 	drop_visualizer.visible = true
@@ -70,7 +76,7 @@ func start_drag(node):
 	
 func end_drag():
 	if modifiers_container.get_child(potential_index) != dragging_node:
-		modifiers_container.move_child(dragging_node, potential_index)
+		modifiers_container.move_child(dragging_node, max(0,potential_index-1))
 		modifier_order_updated()
 	dragging_node = null
 	drop_visualizer.visible = false
@@ -88,7 +94,6 @@ func _on_modifier_updated():
 		var modifier = modifiers[i]
 		if updating or modifier.needs_processing: 
 			updating = true  # once we hit a modifier that did update, everyone must
-			print('processing modifier node: ' + modifier.name)
 			
 			# get the previous image data in the stack, or original if we're at end
 			var image = Image.new()
