@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://modifiers/modifier.gd" type="Script" id=1]
 [ext_resource path="res://icons/eyecon.png" type="Texture" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://icons/triangle_left.png" type="Texture" id=4]
 [ext_resource path="res://icons/triangle_down.png" type="Texture" id=5]
 [ext_resource path="res://theme/main_theme.tres" type="Theme" id=6]
-[ext_resource path="res://fonts/font_vera_title.tres" type="DynamicFont" id=7]
 
 [node name="Modifier" type="PanelContainer"]
 anchor_right = 1.0
@@ -22,7 +21,7 @@ __meta__ = {
 
 [node name="Main" type="VBoxContainer" parent="."]
 margin_right = 1024.0
-margin_bottom = 310.0
+margin_bottom = 109.0
 size_flags_vertical = 3
 theme = ExtResource( 6 )
 __meta__ = {
@@ -31,22 +30,35 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="Main"]
 margin_right = 1024.0
-margin_bottom = 41.0
+margin_bottom = 37.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 5
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = -5
 
+[node name="MoveHandle" type="TextureButton" parent="Main/MarginContainer"]
+margin_left = 10.0
+margin_top = 5.0
+margin_right = 1014.0
+margin_bottom = 42.0
+mouse_default_cursor_shape = 13
+keep_pressed_outside = true
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Title" type="HBoxContainer" parent="Main/MarginContainer"]
 margin_left = 10.0
 margin_top = 5.0
 margin_right = 1014.0
-margin_bottom = 46.0
+margin_bottom = 42.0
+mouse_filter = 2
 size_flags_vertical = 0
 
 [node name="Skip" type="TextureButton" parent="Main/MarginContainer/Title"]
 margin_right = 30.0
-margin_bottom = 41.0
+margin_bottom = 37.0
 hint_tooltip = "Skip"
 mouse_default_cursor_shape = 2
 toggle_mode = true
@@ -58,11 +70,10 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="Main/MarginContainer/Title"]
 margin_left = 34.0
-margin_right = 102.0
-margin_bottom = 41.0
+margin_right = 94.0
+margin_bottom = 37.0
 size_flags_horizontal = 0
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 7 )
 text = "Contrast
 "
 valign = 1
@@ -70,12 +81,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Control" type="Control" parent="Main/MarginContainer/Title"]
+margin_left = 98.0
+margin_right = 979.0
+margin_bottom = 37.0
+mouse_filter = 2
+size_flags_horizontal = 3
+
 [node name="ShowSecondary" type="TextureButton" parent="Main/MarginContainer/Title"]
 margin_left = 983.0
 margin_right = 1004.0
-margin_bottom = 41.0
+margin_bottom = 37.0
 mouse_default_cursor_shape = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 8
 toggle_mode = true
 pressed = true
 texture_normal = ExtResource( 4 )
@@ -83,15 +101,15 @@ texture_pressed = ExtResource( 5 )
 stretch_mode = 2
 
 [node name="VSeparator" type="HSeparator" parent="Main"]
-margin_top = 45.0
+margin_top = 41.0
 margin_right = 1024.0
-margin_bottom = 55.0
+margin_bottom = 51.0
 custom_constants/separation = 10
 
 [node name="MarginContainer2" type="MarginContainer" parent="Main"]
-margin_top = 59.0
+margin_top = 55.0
 margin_right = 1024.0
-margin_bottom = 79.0
+margin_bottom = 75.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
@@ -104,9 +122,9 @@ margin_right = 1014.0
 margin_bottom = 10.0
 
 [node name="MarginContainer3" type="MarginContainer" parent="Main"]
-margin_top = 83.0
+margin_top = 79.0
 margin_right = 1024.0
-margin_bottom = 113.0
+margin_bottom = 109.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
@@ -123,5 +141,7 @@ theme = ExtResource( 6 )
 [node name="VBox" type="VBoxContainer" parent="Main/MarginContainer3/Secondary"]
 margin_right = 1004.0
 
+[connection signal="button_down" from="Main/MarginContainer/MoveHandle" to="." method="_on_MoveHandle_button_down"]
+[connection signal="button_up" from="Main/MarginContainer/MoveHandle" to="." method="_on_MoveHandle_button_up"]
 [connection signal="toggled" from="Main/MarginContainer/Title/Skip" to="." method="_on_skip_toggled"]
 [connection signal="toggled" from="Main/MarginContainer/Title/ShowSecondary" to="." method="_on_show_toggled"]

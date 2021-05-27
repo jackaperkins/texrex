@@ -7,10 +7,11 @@ var result = Image.new()
 
 onready var modifiers_container = $main_split/Panel/VBoxContainer/modifiers_container
 onready var file_name_label = $"main_split/main area/Menubar/HBoxContainer/PanelContainer/Filename"
+onready var drop_visualizer = $main_split/Panel/DropVisualizer
+onready var renderIndicator:Panel = $"main_split/main area/Menubar/HBoxContainer/Container/RenderIndicator"
 
 var texture = ImageTexture.new() # texture version that can be shown inside a sprite
 
-onready var renderIndicator:Panel = $"main_split/main area/Menubar/HBoxContainer/Container/RenderIndicator"
 
 const modifier_resolution = preload("res://modifiers/resolution/modifier_resolution.tscn")
 const modifier_constrast = preload("res://modifiers/contrast/modifier_contrast.tscn")
@@ -19,10 +20,18 @@ const modifier_noise = preload("res://modifiers/noise/modifier_noise.tscn")
 
 var modifiers = []
 
+# pan canvas
+var is_panning = false
+
+# modifier dragging
 var is_dragging = false
+var dragging_node = null
+
+var potential_index = 0
 
 func _ready():
 	#instance default modifiers
+	drop_visualizer.visible = false
 	for child in modifiers_container.get_children():
 		child.queue_free()
 	add_modifier(modifier_pallette)
@@ -30,6 +39,11 @@ func _ready():
 	add_modifier(modifier_noise)
 	add_modifier(modifier_resolution)
 
+func modifier_order_updated():
+	modifiers = []
+	for child in modifiers_container.get_children():
+		modifiers.append(find_modifier(child))
+	process_all()
 
 func process_all():
 	modifiers[modifiers.size()-1].needs_processing = true
@@ -41,8 +55,23 @@ func add_modifier(scene):
 	
 	# we use find_modifier to grab the actual modifier node
 	# as the child class scenes will wrap it in another node
-	find_modifier(mod).connect("updated", self, "_on_modifier_updated")
-	modifiers.append(find_modifier(mod))
+	var modifier:Modifier = find_modifier(mod)
+	modifier.connect("updated", self, "_on_modifier_updated")
+	modifier.modifier_parent = self #this is bad? should we use signals? (yes)
+	modifiers.append(modifier)
+	
+func start_drag(node):
+	drop_visualizer.visible = true
+	is_dragging = true
+	dragging_node = node
+	
+func end_drag():
+	if modifiers_container.get_child(potential_index) != dragging_node:
+		modifiers_container.move_child(dragging_node, potential_index)
+		modifier_order_updated()
+	dragging_node = null
+	drop_visualizer.visible = false
+	is_dragging = false
 
 func _on_modifier_updated():
 	var updating = false
@@ -88,9 +117,9 @@ func find_modifier(node:Node):
 
 func _process(delta):
 	if Input.is_action_just_pressed('middle_mouse'):
-		is_dragging = true
+		is_panning = true
 	elif Input.is_action_just_released('middle_mouse'):
-		is_dragging = false
+		is_panning = false
 
 func _input(event):
 	# Mouse in viewport coordinates.
@@ -99,8 +128,26 @@ func _input(event):
 			$canvas_root.rect_scale += Vector2(0.1, 0.1)
 		elif event.button_index == BUTTON_WHEEL_DOWN:
 			$canvas_root.rect_scale-= Vector2(0.1, 0.1)
-	if event is InputEventMouseMotion and is_dragging:
-		$canvas_root.rect_position += event.relative
+	if event is InputEventMouseMotion:
+		if is_panning:
+			$canvas_root.rect_position += event.relative
+		if is_dragging:
+			update_modifier_drag(event.position)
+		
+func update_modifier_drag(position):
+	potential_index = 0
+	var children = modifiers_container.get_children()
+	var snapped_y = children[0].get_global_rect().position.y 
+	
+	# loop over children comparing out height to half middle of each child
+	for child in children:
+		if position.y < child.get_global_rect().position.y + child.rect_size.y/2:
+			break
+		else:
+			potential_index += 1
+			snapped_y = child.get_global_rect().position.y + child.rect_size.y
+
+	drop_visualizer.rect_position = Vector2(0, snapped_y)
 
 func preload_default():
 	image.load('C:/Users/jacka/Documents/_projects/texrex/sample_textures/woman.jpg')
@@ -119,7 +166,6 @@ func _on_Load_pressed():
 			last_directory = config.get_value('memory', 'last_directory')
 			$open_file_dialog.current_dir = last_directory
 	$open_file_dialog.popup_centered_clamped(Vector2(800,600))
-	
 
 func _on_open_image(path_to_image):
 	var config = ConfigFile.new()

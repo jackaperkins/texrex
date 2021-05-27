@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://junk/Item.tscn" type="PackedScene" id=1]
 [ext_resource path="res://junk/stack.gd" type="Script" id=2]
+[ext_resource path="res://theme/main_theme.tres" type="Theme" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 1 )
@@ -19,15 +20,17 @@ margin_left = -2.3613
 margin_top = 0.23677
 margin_right = -2.36133
 margin_bottom = 0.236816
+theme = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Panel" type="Panel" parent="."]
-margin_left = 193.0
-margin_top = 69.0
-margin_right = 464.0
-margin_bottom = 566.0
+self_modulate = Color( 0.733333, 0.690196, 0.690196, 1 )
+margin_left = 327.811
+margin_top = 56.4008
+margin_right = 598.811
+margin_bottom = 553.401
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -39,29 +42,35 @@ margin_left = 11.0
 margin_top = 12.0
 margin_right = -11.0
 margin_bottom = -12.0
+custom_constants/separation = 10
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Item" parent="Panel/VBoxContainer" instance=ExtResource( 1 )]
-margin_bottom = 70.0
+margin_right = 248.0
+margin_bottom = 82.0
 
 [node name="Item2" parent="Panel/VBoxContainer" instance=ExtResource( 1 )]
-margin_top = 74.0
-margin_bottom = 144.0
+margin_top = 92.0
+margin_right = 248.0
+margin_bottom = 174.0
 
 [node name="Item3" parent="Panel/VBoxContainer" instance=ExtResource( 1 )]
-margin_top = 148.0
-margin_bottom = 218.0
+margin_top = 184.0
+margin_right = 248.0
+margin_bottom = 266.0
 
 [node name="Item4" parent="Panel/VBoxContainer" instance=ExtResource( 1 )]
-margin_top = 222.0
-margin_bottom = 292.0
+margin_top = 276.0
+margin_right = 248.0
+margin_bottom = 358.0
 
 [node name="Item5" parent="Panel/VBoxContainer" instance=ExtResource( 1 )]
-margin_top = 296.0
-margin_bottom = 366.0
+margin_top = 368.0
+margin_right = 248.0
+margin_bottom = 450.0
 
 [node name="PreviewBar" type="Panel" parent="Panel"]
 margin_left = 2.758

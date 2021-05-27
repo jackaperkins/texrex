@@ -1,14 +1,17 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://modifiers/contrast/modifier_contrast.tscn" type="PackedScene" id=2]
 [ext_resource path="res://theme/main_theme.tres" type="Theme" id=6]
 [ext_resource path="res://theme/panel_styleboxflat_dark.tres" type="StyleBox" id=7]
 
+[sub_resource type="StyleBoxFlat" id=1]
+
 [sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.152941, 0.152941, 0.152941, 1 )
 
 [sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.152941, 0.152941, 0.152941, 1 )
+bg_color = Color( 1, 1, 1, 1 )
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -94,7 +97,7 @@ __meta__ = {
 
 [node name="Load" type="Button" parent="main_split/main area/Menubar/HBoxContainer"]
 margin_right = 47.0
-margin_bottom = 37.0
+margin_bottom = 30.0
 text = "Load"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -103,7 +106,7 @@ __meta__ = {
 [node name="Save" type="Button" parent="main_split/main area/Menubar/HBoxContainer"]
 margin_left = 51.0
 margin_right = 98.0
-margin_bottom = 37.0
+margin_bottom = 30.0
 text = "Save"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -112,7 +115,7 @@ __meta__ = {
 [node name="PanelContainer" type="Panel" parent="main_split/main area/Menubar/HBoxContainer"]
 margin_left = 102.0
 margin_right = 642.0
-margin_bottom = 37.0
+margin_bottom = 30.0
 size_flags_horizontal = 3
 custom_styles/panel = ExtResource( 7 )
 
@@ -133,7 +136,7 @@ __meta__ = {
 [node name="Container" type="Control" parent="main_split/main area/Menubar/HBoxContainer"]
 margin_left = 646.0
 margin_right = 686.0
-margin_bottom = 37.0
+margin_bottom = 30.0
 rect_min_size = Vector2( 40, 0 )
 
 [node name="RenderIndicator" type="Panel" parent="main_split/main area/Menubar/HBoxContainer/Container"]
@@ -143,7 +146,7 @@ margin_right = 30.9698
 margin_bottom = 24.522
 rect_rotation = -134.6
 rect_pivot_offset = Vector2( 10, 10 )
-custom_styles/panel = SubResource( 2 )
+custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -154,7 +157,7 @@ anchor_bottom = 1.0
 margin_top = 8.021
 margin_bottom = -9.97899
 rect_pivot_offset = Vector2( 10, 1 )
-custom_styles/panel = SubResource( 3 )
+custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -191,10 +194,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="modifiers_container" type="VBoxContainer" parent="main_split/Panel/VBoxContainer"]
+[node name="VSeparator" type="HSeparator" parent="main_split/Panel/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
 margin_top = 25.0
 margin_right = 296.0
-margin_bottom = 138.0
+margin_bottom = 45.0
+custom_constants/separation = 20
+
+[node name="modifiers_container" type="VBoxContainer" parent="main_split/Panel/VBoxContainer"]
+margin_top = 49.0
+margin_right = 296.0
+margin_bottom = 158.0
 custom_constants/separation = 12
 __meta__ = {
 "_edit_use_anchors_": false
@@ -203,7 +213,20 @@ __meta__ = {
 [node name="Modifier Contrast" parent="main_split/Panel/VBoxContainer/modifiers_container" instance=ExtResource( 2 )]
 anchor_right = 0.0
 margin_right = 296.0
-margin_bottom = 113.0
+margin_bottom = 109.0
+
+[node name="DropVisualizer" type="Panel" parent="main_split/Panel"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -1.7818
+margin_bottom = 3.2182
+rect_min_size = Vector2( 0, 3 )
+size_flags_horizontal = 3
+custom_styles/panel = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="open_file_dialog" type="FileDialog" parent="."]
 margin_left = 141.776

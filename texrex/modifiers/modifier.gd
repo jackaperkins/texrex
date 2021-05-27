@@ -8,24 +8,15 @@ var skip = false
 
 var image = Image.new()
 
-onready var secondary = $Main/MarginContainer3/Secondary
+var modifier_parent = null # set from outside
 
+onready var secondary = $Main/MarginContainer3/Secondary
+onready var move_button = $Main/MarginContainer/MoveButton
 # UI stuff
 func _process(delta):
 	pass
 	
 
-# adds first child as a primary, and the rest as secondary
-# broken ??? weird inherentrence problem here
-# it seems like doing get_child anywhere in the tree causes it to see the child class only
-# when doing add_primary_child from child class its okayt
-# but when we call it from here, we get the child class tree, not our base class tree??
-#func add_controls_auto(children):
-#	add_primary_child(children[0])
-#	for i in range(1, children.size()):
-#		add_secondary_child(children[i])
-			
-# adds node into primary (always visible) slot
 func add_primary_child(node:Node):
 	node.get_parent().remove_child(node)
 	$Main/MarginContainer2/Primary.add_child(node)
@@ -101,3 +92,11 @@ func process_shader(material:Material, canvas_size:Vector2, result_image):
 		print('viewport yield.. waiting a frame')
 		yield(get_tree(), "idle_frame")
 	
+
+
+func _on_MoveHandle_button_down():
+	modifier_parent.start_drag(get_parent()) #get parent here is hacky + assumes we're wrapped.. okay iguess
+ 
+
+func _on_MoveHandle_button_up():
+	modifier_parent.end_drag()
