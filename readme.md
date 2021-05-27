@@ -1,6 +1,6 @@
 # Texrex - Open Source Texture Smasher
 
-![](texrex/icons/texrex_icon_4xscaled.png)
+![](docs/texrex_demo.png)
 
 
 The #1 goal is to make the workflow for lofi primative 3d texturing easy, especially when working from borrowed source material

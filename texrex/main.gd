@@ -5,6 +5,8 @@ var image = Image.new()
 
 var result = Image.new()
 
+var activity_spin_frames = 0
+
 onready var modifiers_container = $main_split/Panel/VBoxContainer/modifiers_container
 onready var file_name_label = $"main_split/main area/VBoxContainer/Menubar/HBoxContainer/PanelContainer/Filename"
 onready var drop_visualizer = $main_split/Panel/DropVisualizer
@@ -38,6 +40,7 @@ func _ready():
 	add_modifier(modifier_constrast)
 	add_modifier(modifier_noise)
 	add_modifier(modifier_resolution)
+
 
 func modifier_order_updated():
 	modifiers = []
@@ -99,7 +102,7 @@ func _on_modifier_updated():
 				# special case to wait for a  yield if our modifier is a coroutine
 				if function is GDScriptFunctionState && function.is_valid():
 					yield(function, "completed")
-					renderIndicator.set_rotation(renderIndicator.get_rotation()+0.2)
+					activity_spin_frames = max(8, activity_spin_frames)
 			result.copy_from(modifier.image)
 		i -= 1
 		
@@ -116,6 +119,10 @@ func find_modifier(node:Node):
 				return n
 
 func _process(delta):
+	if activity_spin_frames > 0:
+		activity_spin_frames -= 1
+		renderIndicator.rect_rotation += 3
+		
 	if Input.is_action_just_pressed('middle_mouse'):
 		is_panning = true
 	elif Input.is_action_just_released('middle_mouse'):
