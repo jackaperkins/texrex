@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://modifiers/seamless/seamless.shader" type="Shader" id=1]
+[ext_resource path="res://textures/splat_map.png" type="Texture" id=2]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/distance = 10.0
+shader_param/splatMap = ExtResource( 2 )

@@ -8,6 +8,7 @@ onready var modifiers = [
 	{'Pallette': load('res://modifiers/pallette/modifier_pallette.tscn')},
 	{'Noise': load('res://modifiers/noise/modifier_noise.tscn')},
 	{'Resolution': load('res://modifiers/resolution/modifier_resolution.tscn')},
+	{'Seamless': load('res://modifiers/seamless/modifier_seamless.tscn')}
 ]
 
 
