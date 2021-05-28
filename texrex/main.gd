@@ -195,3 +195,7 @@ func _on_open_image(path_to_image):
 func _on_Save_pressed():
 	print('loading save dialog')
 	$save_file_dialog.popup_centered_clamped(Vector2(800,600))
+
+func _on_save_file_dialog_file_selected(path):
+	result.save_png(path)
+	pass # Replace with function body.
