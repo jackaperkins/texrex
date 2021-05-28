@@ -11,11 +11,10 @@ var image = Image.new()
 var modifier_parent = null # set from outside
 
 onready var secondary = $Main/MarginContainer3/Secondary
-onready var move_button = $Main/MarginContainer/MoveButton
-# UI stuff
+
+
 func _process(delta):
 	pass
-
 
 func add_primary_child(node:Node):
 	node.get_parent().remove_child(node)

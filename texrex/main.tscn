@@ -2,7 +2,7 @@
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://modifiers/contrast/modifier_contrast.tscn" type="PackedScene" id=2]
-[ext_resource path="res://fonts/font_vera_hint.tres" type="DynamicFont" id=3]
+[ext_resource path="res://ui/canvas.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ui/AddModifiers.tscn" type="PackedScene" id=4]
 [ext_resource path="res://theme/main_theme.tres" type="Theme" id=6]
 [ext_resource path="res://theme/panel_styleboxflat_dark.tres" type="StyleBox" id=7]
@@ -31,174 +31,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="Panel" parent="."]
-self_modulate = Color( 0.597656, 0.597656, 0.597656, 1 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="canvas_root" type="Control" parent="."]
-margin_left = 446.515
-margin_top = 376.96
-margin_right = 486.515
-margin_bottom = 416.96
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HSeparator" type="HSeparator" parent="canvas_root"]
-margin_left = -256.0
-margin_top = -7.0
-margin_right = 256.0
-margin_bottom = 7.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HSeparator2" type="HSeparator" parent="canvas_root"]
-margin_left = -256.0
-margin_top = -7.0
-margin_right = 256.0
-margin_bottom = 7.0
-rect_rotation = 90.0
-rect_pivot_offset = Vector2( 256, 7.5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="canvasScaler" type="Control" parent="canvas_root"]
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="GridContainer" type="GridContainer" parent="canvas_root/canvasScaler"]
-margin_left = -768.0
-margin_top = -768.0
-margin_right = 768.0
-margin_bottom = 768.0
-rect_pivot_offset = Vector2( 768, 768 )
-custom_constants/vseparation = 0
-custom_constants/hseparation = 0
-columns = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MainTexture2" type="TextureRect" parent="canvas_root/canvasScaler/GridContainer"]
-margin_right = 512.0
-margin_bottom = 512.0
-rect_pivot_offset = Vector2( 256, 256 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
-stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MainTexture3" type="TextureRect" parent="canvas_root/canvasScaler/GridContainer"]
-margin_left = 512.0
-margin_right = 1024.0
-margin_bottom = 512.0
-rect_pivot_offset = Vector2( 256, 256 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
-stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MainTexture4" type="TextureRect" parent="canvas_root/canvasScaler/GridContainer"]
-margin_left = 1024.0
-margin_right = 1536.0
-margin_bottom = 512.0
-rect_pivot_offset = Vector2( 256, 256 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
-stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MainTexture5" type="TextureRect" parent="canvas_root/canvasScaler/GridContainer"]
-margin_top = 512.0
-margin_right = 512.0
-margin_bottom = 1024.0
-rect_pivot_offset = Vector2( 256, 256 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
-stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MainTexture" type="TextureRect" parent="canvas_root/canvasScaler/GridContainer"]
-margin_left = 512.0
-margin_top = 512.0
-margin_right = 1024.0
-margin_bottom = 1024.0
-rect_pivot_offset = Vector2( 256, 256 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
-stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MainTexture6" type="TextureRect" parent="canvas_root/canvasScaler/GridContainer"]
-margin_left = 1024.0
-margin_top = 512.0
-margin_right = 1536.0
-margin_bottom = 1024.0
-rect_pivot_offset = Vector2( 256, 256 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
-stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MainTexture7" type="TextureRect" parent="canvas_root/canvasScaler/GridContainer"]
-margin_top = 1024.0
-margin_right = 512.0
-margin_bottom = 1536.0
-rect_pivot_offset = Vector2( 256, 256 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
-stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MainTexture8" type="TextureRect" parent="canvas_root/canvasScaler/GridContainer"]
-margin_left = 512.0
-margin_top = 1024.0
-margin_right = 1024.0
-margin_bottom = 1536.0
-rect_pivot_offset = Vector2( 256, 256 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
-stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MainTexture9" type="TextureRect" parent="canvas_root/canvasScaler/GridContainer"]
-margin_left = 1024.0
-margin_top = 1024.0
-margin_right = 1536.0
-margin_bottom = 1536.0
-rect_pivot_offset = Vector2( 256, 256 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
-stretch_mode = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="main_split" type="HSplitContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -217,6 +49,7 @@ size_flags_stretch_ratio = 2.0
 [node name="VBoxContainer" type="VBoxContainer" parent="main_split/main area"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+custom_constants/separation = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -299,23 +132,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BottomBar" type="Control" parent="main_split/main area/VBoxContainer"]
-margin_top = 748.0
+[node name="canvas" parent="main_split/main area/VBoxContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 21.0
 margin_right = 867.0
 margin_bottom = 768.0
-rect_min_size = Vector2( 0, 20 )
-size_flags_vertical = 10
-
-[node name="BottomInfo" type="Label" parent="main_split/main area/VBoxContainer/BottomBar"]
-margin_left = 10.0
-margin_right = 40.0
-margin_bottom = 17.0
-custom_fonts/font = ExtResource( 3 )
-custom_colors/font_color = Color( 0.533333, 0.533333, 0.533333, 1 )
-text = "Ram"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Panel" type="Panel" parent="main_split"]
 margin_left = 879.0
@@ -437,11 +259,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Timer" type="Timer" parent="."]
-autostart = true
-
 [connection signal="pressed" from="main_split/main area/VBoxContainer/Menubar/HBoxContainer/Load" to="." method="_on_Load_pressed"]
 [connection signal="pressed" from="main_split/main area/VBoxContainer/Menubar/HBoxContainer/Save" to="." method="_on_Save_pressed"]
 [connection signal="file_selected" from="open_file_dialog" to="." method="_on_open_image"]
 [connection signal="file_selected" from="save_file_dialog" to="." method="_on_save_file_dialog_file_selected"]
-[connection signal="timeout" from="Timer" to="." method="_on_InfoTimer_timeout"]

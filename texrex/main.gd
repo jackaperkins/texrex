@@ -11,12 +11,8 @@ onready var modifier_resolution = load('res://modifiers/resolution/modifier_reso
 
 onready var file_name_label = $"main_split/main area/VBoxContainer/Menubar/HBoxContainer/PanelContainer/Filename"
 onready var renderIndicator:Panel = $"main_split/main area/VBoxContainer/Menubar/HBoxContainer/Container/RenderIndicator"
-onready var bottom_info = $"main_split/main area/VBoxContainer/BottomBar/BottomInfo"
 
-onready var canvas_root = $canvas_root
-onready var canvasScaler = $canvas_root/canvasScaler
-onready var canvasMainTexture = $canvas_root/canvasScaler/GridContainer/MainTexture
-onready var canvasAllTextures = $canvas_root/canvasScaler/GridContainer.get_children()
+onready var canvas = $"main_split/main area/VBoxContainer/canvas"
 
 onready var drop_visualizer = $main_split/Panel/DropVisualizer
 onready var modifiers_container = $main_split/Panel/VBoxContainer/modifiers_container
@@ -28,9 +24,6 @@ var texture = ImageTexture.new() # texture version that can be shown inside a sp
 
 
 var modifiers = []
-
-# pan canvas
-var is_panning = false
 
 # modifier dragging
 var is_dragging = false
@@ -124,11 +117,8 @@ func _on_modifier_updated():
 					activity_spin_frames = max(8, activity_spin_frames)
 			result.copy_from(modifier.image)
 		i -= 1
-		
-	texture.create_from_image(result,3)
-	for t in canvasAllTextures:
-		t.texture = texture
-#	canvasMainTexture.texture = texture
+	texture.create_from_image(result, 3)
+	canvas.set_texture(texture)
 
 # return a modifier or childclass somewhere in the node/children, like unity getComponentsInChildren<>() 
 func find_modifier(node:Node):
@@ -143,21 +133,10 @@ func _process(delta):
 	if activity_spin_frames > 0: # wheeeee!!
 		activity_spin_frames -= 1
 		renderIndicator.rect_rotation += 3
-		
-	if Input.is_action_just_pressed('middle_mouse'):
-		is_panning = true
-	elif Input.is_action_just_released('middle_mouse'):
-		is_panning = false
+
 
 func _input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_WHEEL_UP:
-			canvasScaler.rect_scale += Vector2(0.1, 0.1)
-		elif event.button_index == BUTTON_WHEEL_DOWN:
-			canvasScaler.rect_scale-= Vector2(0.1, 0.1)
 	if event is InputEventMouseMotion:
-		if is_panning:
-			canvas_root.rect_position += event.relative
 		if is_dragging:
 			update_modifier_drag(event.position)
 		
@@ -216,9 +195,3 @@ func _on_open_image(path_to_image):
 func _on_Save_pressed():
 	print('loading save dialog')
 	$save_file_dialog.popup_centered_clamped(Vector2(800,600))
-
-func _on_save_file_dialog_file_selected(path):
-	result.save_png(path)
-	
-func _on_InfoTimer_timeout():
-	bottom_info.text = 'memory ' + String(OS.get_static_memory_usage()/1048576) + ' MB'
