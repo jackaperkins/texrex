@@ -7,20 +7,25 @@ var result = Image.new()
 
 var activity_spin_frames = 0
 
-onready var modifiers_container = $main_split/Panel/VBoxContainer/modifiers_container
+onready var modifier_resolution = load('res://modifiers/resolution/modifier_resolution.tscn')
+
 onready var file_name_label = $"main_split/main area/VBoxContainer/Menubar/HBoxContainer/PanelContainer/Filename"
-onready var drop_visualizer = $main_split/Panel/DropVisualizer
 onready var renderIndicator:Panel = $"main_split/main area/VBoxContainer/Menubar/HBoxContainer/Container/RenderIndicator"
 onready var bottom_info = $"main_split/main area/VBoxContainer/BottomBar/BottomInfo"
+
+onready var canvas_root = $canvas_root
+onready var canvasScaler = $canvas_root/canvasScaler
+onready var canvasMainTexture = $canvas_root/canvasScaler/GridContainer/MainTexture
+onready var canvasAllTextures = $canvas_root/canvasScaler/GridContainer.get_children()
+
+onready var drop_visualizer = $main_split/Panel/DropVisualizer
+onready var modifiers_container = $main_split/Panel/VBoxContainer/modifiers_container
 onready var modifier_box = $main_split/Panel/VBoxContainer/AddModifiers
+onready var delete_modifiers = $main_split/Panel/VBoxContainer/MarginContainer/DeleteModifiers
+onready var delete_modifiers_container = $main_split/Panel/VBoxContainer/MarginContainer
 
 var texture = ImageTexture.new() # texture version that can be shown inside a sprite
 
-
-const modifier_resolution = preload("res://modifiers/resolution/modifier_resolution.tscn")
-const modifier_constrast = preload("res://modifiers/contrast/modifier_contrast.tscn")
-const modifier_pallette = preload("res://modifiers/pallette/modifier_pallette.tscn")
-const modifier_noise = preload("res://modifiers/noise/modifier_noise.tscn")
 
 var modifiers = []
 
@@ -29,22 +34,23 @@ var is_panning = false
 
 # modifier dragging
 var is_dragging = false
-var dragging_node = null
+var dragging_node:Node = null
+var drag_delete_node = false # if we should trash it instead
 
 var potential_index = 0
 
 func _ready():
 	#instance default modifiers
 	drop_visualizer.visible = false
+	delete_modifiers_container.visible = false
+	
 	for child in modifiers_container.get_children():
-		child.queue_free()
-		
-	modifier_box.connect("add_modifier", self, "prepend_modifier")
+		child.free()
+	
 	prepend_modifier(modifier_resolution)
-#	prepend_modifier(modifier_pallette)
-#	prepend_modifier(modifier_constrast)
-#	prepend_modifier(modifier_noise)
-
+	modifier_order_updated()
+	
+	modifier_box.connect("add_modifier", self, "prepend_modifier")
 
 func modifier_order_updated():
 	modifiers = []
@@ -53,7 +59,8 @@ func modifier_order_updated():
 	process_all()
 
 func process_all():
-	modifiers[modifiers.size()-1].needs_processing = true
+	if modifiers.size() > 0:
+		modifiers[modifiers.size()-1].needs_processing = true
 	_on_modifier_updated()
 
 
@@ -61,32 +68,39 @@ func prepend_modifier(scene:PackedScene):
 	var mod = scene.instance()
 	modifiers_container.add_child(mod)
 	modifiers_container.move_child(mod, 0)
-#	print(modifiers_container.get_child_count())
-	# we use find_modifier to grab the actual modifier node
-	# as the child class scenes will wrap it in another node
+
 	var modifier:Modifier = find_modifier(mod)
 	modifier.connect("updated", self, "_on_modifier_updated")
 	modifier.modifier_parent = self #this is bad? should we use signals? (yes)
 	modifiers.push_front(modifier)
+	modifier_order_updated()
 	
 func start_drag(node):
 	drop_visualizer.visible = true
+	delete_modifiers_container.visible = true
 	is_dragging = true
 	dragging_node = node
 	
 func end_drag():
-	if modifiers_container.get_child(potential_index) != dragging_node:
+	delete_modifiers_container.visible = false
+	if drag_delete_node:
+		dragging_node.free()
+		modifier_order_updated()
+	elif modifiers_container.get_child(potential_index) != dragging_node:
 		modifiers_container.move_child(dragging_node, max(0,potential_index-1))
 		modifier_order_updated()
+		
 	dragging_node = null
 	drop_visualizer.visible = false
 	is_dragging = false
 
+# our main processing function
 func _on_modifier_updated():
 	var updating = false
 	if original_image.get_size().length() == 0:
 		print('skipping modifiers stack, no image loaded')
 		return
+	
 	# walk backwards through array, bottom to top
 	result = Image.new()
 	var i = modifiers.size() - 1
@@ -112,9 +126,11 @@ func _on_modifier_updated():
 		i -= 1
 		
 	texture.create_from_image(result,3)
-	$canvas_root/MainTexture.texture = texture
+	for t in canvasAllTextures:
+		t.texture = texture
+#	canvasMainTexture.texture = texture
 
-# return a modifier or childclass somewhere in the node/children
+# return a modifier or childclass somewhere in the node/children, like unity getComponentsInChildren<>() 
 func find_modifier(node:Node):
 	if node is Modifier:
 		return node
@@ -124,7 +140,7 @@ func find_modifier(node:Node):
 				return n
 
 func _process(delta):
-	if activity_spin_frames > 0:
+	if activity_spin_frames > 0: # wheeeee!!
 		activity_spin_frames -= 1
 		renderIndicator.rect_rotation += 3
 		
@@ -134,19 +150,19 @@ func _process(delta):
 		is_panning = false
 
 func _input(event):
-	# Mouse in viewport coordinates.
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_WHEEL_UP:
-			$canvas_root.rect_scale += Vector2(0.1, 0.1)
+			canvasScaler.rect_scale += Vector2(0.1, 0.1)
 		elif event.button_index == BUTTON_WHEEL_DOWN:
-			$canvas_root.rect_scale-= Vector2(0.1, 0.1)
+			canvasScaler.rect_scale-= Vector2(0.1, 0.1)
 	if event is InputEventMouseMotion:
 		if is_panning:
-			$canvas_root.rect_position += event.relative
+			canvas_root.rect_position += event.relative
 		if is_dragging:
 			update_modifier_drag(event.position)
 		
 func update_modifier_drag(position):
+	drag_delete_node = false
 	potential_index = 0
 	var children = modifiers_container.get_children()
 	var snapped_y = children[0].get_global_rect().position.y 
@@ -158,8 +174,12 @@ func update_modifier_drag(position):
 		else:
 			potential_index += 1
 			snapped_y = child.get_global_rect().position.y + child.rect_size.y
+	
+	if delete_modifiers.get_global_rect().has_point(position):
+		drag_delete_node = true
 
 	drop_visualizer.rect_position = Vector2(0, snapped_y)
+	drop_visualizer.visible = !drag_delete_node
 
 func preload_default():
 	image.load('C:/Users/jacka/Documents/_projects/texrex/sample_textures/woman.jpg')
@@ -173,7 +193,7 @@ func _on_Load_pressed():
 	
 	var config = ConfigFile.new()
 	var err = config.load("user://settings.cfg")
-	if err == OK: # If not, something went wrong with the file loading
+	if err == OK:
 		if config.has_section_key('memory', "last_directory"):
 			last_directory = config.get_value('memory', 'last_directory')
 			$open_file_dialog.current_dir = last_directory
@@ -182,7 +202,7 @@ func _on_Load_pressed():
 func _on_open_image(path_to_image):
 	var config = ConfigFile.new()
 	var err = config.load("user://settings.cfg")
-	if err != OK: # If not, something went wrong with the file loading
+	if err != OK:
 		config = ConfigFile.new()
 	var path = path_to_image.rsplit("/", true, 1)[0]
 	config.set_value('memory', 'last_directory', path)
@@ -196,13 +216,9 @@ func _on_open_image(path_to_image):
 func _on_Save_pressed():
 	print('loading save dialog')
 	$save_file_dialog.popup_centered_clamped(Vector2(800,600))
-	pass # Replace with function body.
 
 func _on_save_file_dialog_file_selected(path):
 	result.save_png(path)
-	pass # Replace with function body.
 	
-
-
 func _on_InfoTimer_timeout():
 	bottom_info.text = 'memory ' + String(OS.get_static_memory_usage()/1048576) + ' MB'

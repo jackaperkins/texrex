@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://modifiers/utility/utility.shader" type="Shader" id=1]
+[ext_resource path="res://icons/texrex_icon_4xscaled.png" type="Texture" id=2]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/invert = false
+shader_param/tex = ExtResource( 2 )

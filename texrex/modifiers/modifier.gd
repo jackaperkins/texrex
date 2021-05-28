@@ -66,6 +66,7 @@ func process_shader(material:Material, canvas_size:Vector2, result_image):
 	var view = Viewport.new()
 	view.disable_3d = true
 	view.render_target_update_mode = Viewport.UPDATE_ALWAYS
+	
 	view.size = canvas_size
 	var rect = ColorRect.new()
 	rect.material = material
@@ -83,6 +84,7 @@ func process_shader(material:Material, canvas_size:Vector2, result_image):
 		image_data = texture.get_data()
 		image_data.lock()
 		# we know our texture is done because the pixel in the corner isn't 0 alpha
+		# this sucks though because now we can't have alpha in shaders???
 		if image_data.get_pixel(0,0).a != 0.0: #we know this throws an error, someones unhappy we're accessing a null pointer but we still get a safe value of 0,0,0,0 that we can sentinel off of!!!
 			image_data.unlock()
 			result_image.copy_from(image_data)

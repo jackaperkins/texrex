@@ -3,9 +3,11 @@ extends Button
 signal add_modifier(modifier)
 
 onready var modifiers = [
+	{'Utility': load('res://modifiers/utility/modifier_utility.tscn')},
 	{'Contrast': load('res://modifiers/contrast/modifier_contrast.tscn')},
 	{'Pallette': load('res://modifiers/pallette/modifier_pallette.tscn')},
 	{'Noise': load('res://modifiers/noise/modifier_noise.tscn')},
+	{'Resolution': load('res://modifiers/resolution/modifier_resolution.tscn')},
 ]
 
 

@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://modifiers/utility/m_render_utility.tres" type="Material" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.52258
+margin_right = 2.52258
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 256, 256 )
+transparent_bg = true
+hdr = false
+usage = 0
+
+[node name="ColorRect" type="ColorRect" parent="Viewport"]
+material = ExtResource( 1 )
+margin_left = 63.5226
+margin_top = 61.0
+margin_right = 328.523
+margin_bottom = 302.0
+__meta__ = {
+"_edit_use_anchors_": false
+}

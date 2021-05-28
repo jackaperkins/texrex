@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://modifiers/contrast/modifier_contrast.tscn" type="PackedScene" id=2]
@@ -13,6 +13,13 @@
 bg_color = Color( 0.152941, 0.152941, 0.152941, 1 )
 
 [sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 1, 0.309804, 0.309804, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 1, 1, 1, 1 )
 
 [node name="Control" type="Control"]
@@ -33,33 +40,161 @@ __meta__ = {
 }
 
 [node name="canvas_root" type="Control" parent="."]
-margin_left = 467.515
-margin_top = 252.96
-margin_right = 507.515
-margin_bottom = 292.96
+margin_left = 446.515
+margin_top = 376.96
+margin_right = 486.515
+margin_bottom = 416.96
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HSeparator" type="HSeparator" parent="canvas_root"]
 margin_left = -256.0
+margin_top = -7.0
 margin_right = 256.0
-margin_bottom = 15.0
+margin_bottom = 7.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MainTexture" type="TextureRect" parent="canvas_root"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -128.69
-margin_top = -127.799
-margin_right = 127.31
-margin_bottom = 128.201
-rect_pivot_offset = Vector2( 128, 128 )
-stretch_mode = 3
+[node name="HSeparator2" type="HSeparator" parent="canvas_root"]
+margin_left = -256.0
+margin_top = -7.0
+margin_right = 256.0
+margin_bottom = 7.0
+rect_rotation = 90.0
+rect_pivot_offset = Vector2( 256, 7.5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="canvasScaler" type="Control" parent="canvas_root"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="canvas_root/canvasScaler"]
+margin_left = -768.0
+margin_top = -768.0
+margin_right = 768.0
+margin_bottom = 768.0
+rect_pivot_offset = Vector2( 768, 768 )
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainTexture2" type="TextureRect" parent="canvas_root/canvasScaler/GridContainer"]
+margin_right = 512.0
+margin_bottom = 512.0
+rect_pivot_offset = Vector2( 256, 256 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainTexture3" type="TextureRect" parent="canvas_root/canvasScaler/GridContainer"]
+margin_left = 512.0
+margin_right = 1024.0
+margin_bottom = 512.0
+rect_pivot_offset = Vector2( 256, 256 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainTexture4" type="TextureRect" parent="canvas_root/canvasScaler/GridContainer"]
+margin_left = 1024.0
+margin_right = 1536.0
+margin_bottom = 512.0
+rect_pivot_offset = Vector2( 256, 256 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainTexture5" type="TextureRect" parent="canvas_root/canvasScaler/GridContainer"]
+margin_top = 512.0
+margin_right = 512.0
+margin_bottom = 1024.0
+rect_pivot_offset = Vector2( 256, 256 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainTexture" type="TextureRect" parent="canvas_root/canvasScaler/GridContainer"]
+margin_left = 512.0
+margin_top = 512.0
+margin_right = 1024.0
+margin_bottom = 1024.0
+rect_pivot_offset = Vector2( 256, 256 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainTexture6" type="TextureRect" parent="canvas_root/canvasScaler/GridContainer"]
+margin_left = 1024.0
+margin_top = 512.0
+margin_right = 1536.0
+margin_bottom = 1024.0
+rect_pivot_offset = Vector2( 256, 256 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainTexture7" type="TextureRect" parent="canvas_root/canvasScaler/GridContainer"]
+margin_top = 1024.0
+margin_right = 512.0
+margin_bottom = 1536.0
+rect_pivot_offset = Vector2( 256, 256 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainTexture8" type="TextureRect" parent="canvas_root/canvasScaler/GridContainer"]
+margin_left = 512.0
+margin_top = 1024.0
+margin_right = 1024.0
+margin_bottom = 1536.0
+rect_pivot_offset = Vector2( 256, 256 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainTexture9" type="TextureRect" parent="canvas_root/canvasScaler/GridContainer"]
+margin_left = 1024.0
+margin_top = 1024.0
+margin_right = 1536.0
+margin_bottom = 1536.0
+rect_pivot_offset = Vector2( 256, 256 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch_mode = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -227,6 +362,32 @@ anchor_right = 0.0
 margin_right = 381.0
 margin_bottom = 109.0
 
+[node name="MarginContainer" type="MarginContainer" parent="main_split/Panel/VBoxContainer"]
+margin_top = 162.0
+margin_right = 381.0
+margin_bottom = 252.0
+custom_constants/margin_top = 30
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DeleteModifiers" type="Panel" parent="main_split/Panel/VBoxContainer/MarginContainer"]
+margin_top = 30.0
+margin_right = 381.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 0, 60 )
+custom_styles/panel = SubResource( 3 )
+
+[node name="Label" type="Label" parent="main_split/Panel/VBoxContainer/MarginContainer/DeleteModifiers"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Delete Modifier [Drag Here]"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="DropVisualizer" type="Panel" parent="main_split/Panel"]
 anchor_top = 0.5
 anchor_right = 1.0
@@ -235,7 +396,7 @@ margin_top = -1.7818
 margin_bottom = 3.2182
 rect_min_size = Vector2( 0, 3 )
 size_flags_horizontal = 3
-custom_styles/panel = SubResource( 3 )
+custom_styles/panel = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

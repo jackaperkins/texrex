@@ -10,7 +10,6 @@ var pallette:HSlider
 func _ready():
 	pallette = $Pallette
 	count = pallette.value
-	clear_placeholders()
 	mat = mat.duplicate()
 	set_secondary_visible(false)
 	add_primary_child($Pallette)
