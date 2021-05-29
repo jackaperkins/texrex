@@ -85,10 +85,14 @@ func _on_Pallette_value_changed(value):
 
 func _on_mode_tab_changed(tab):
 	mode = tab
-	if mode == 1:
+	if mode == 0:
+		pallette.max_value = 256
+	elif mode == 1:
 		pallette.value = min(pallette.value,8)
-	if mode > 1:
+		pallette.max_value = 8
+	elif mode > 1:
 		_on_show_toggled(true)
+
 	_update_ui()
 	needs_processing = true
 	emit_signal('updated')
