@@ -5,14 +5,29 @@
 
 The #1 goal is to make the workflow for lofi primative 3d texturing easy, especially when working from borrowed source material
 
-**App icon by Amon26, thanks!**
+NOTE: **Builds coming soon! In the meantime if you have godot you can run this from the editor easily!**
 
-Some features i'd like:
-- saving of project files, not just image export
-- good crop tool, easy support for non-square ratios
-- super good saving and loading workflow, no default Dialog guis!!
-- painting layers
-- a million weird effects and built-in pallettes
+App icon by Amon26, thanks
+
+## Project Roadmap
+
+### Alpha Release [Coming ASAP]
+- pallette effects (including custom)
+- good HSV basics
+- seamless effects
+
+### Beta
+- saving of texrex project files
+- better than default file dialogs, drag'n'drop
+- undo
+
+### 1.0 [wishful thinking]
+- transparency support
+- shader performance and pipeline
+- memory issues
+- Apple Inc walled garden prison fees
+- painting layers, especially a scratch effect like wally
+- support for image sequences?
 
 ## Adding New Modifiers (WIP)
 ### Creating the scene

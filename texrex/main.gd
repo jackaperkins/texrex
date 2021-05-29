@@ -69,7 +69,7 @@ func prepend_modifier(scene:PackedScene):
 	modifier_order_updated()
 	
 func start_drag(node):
-	drop_visualizer.visible = true
+	potential_index = 0
 	delete_modifiers_container.visible = true
 	is_dragging = true
 	dragging_node = node
@@ -141,6 +141,7 @@ func _input(event):
 			update_modifier_drag(event.position)
 		
 func update_modifier_drag(position):
+	drop_visualizer.visible = true
 	drag_delete_node = false
 	potential_index = 0
 	var children = modifiers_container.get_children()

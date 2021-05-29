@@ -7,18 +7,18 @@ var mode = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	clear_placeholders()
+	mat = mat.duplicate()
+	
 	add_primary_child($Noise)
 	set_label('Noise ' + String(scale))
-	
-	mat = mat.duplicate()
 	
 	var tabs = $Mode
 	tabs.add_tab("Brightness")
 	tabs.add_tab("Hue Shift")
 	tabs.add_tab("Rainbow")
-	add_secondary_child(tabs)
+	add_primary_child(tabs)
 	
+	hide_secondary_toggle()
 
 func process_image(incoming:Image):
 	mat.set_shader_param('amount', scale)
