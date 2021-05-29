@@ -13,7 +13,8 @@
 bg_color = Color( 0.152941, 0.152941, 0.152941, 1 )
 
 [sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 1, 0.309804, 0.309804, 1 )
+bg_color = Color( 0.396078, 0.286275, 0.286275, 1 )
+border_color = Color( 0.823529, 0.439216, 0.439216, 1 )
 corner_radius_top_left = 15
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15
@@ -203,7 +204,7 @@ custom_styles/panel = SubResource( 3 )
 [node name="Label" type="Label" parent="main_split/Panel/VBoxContainer/MarginContainer/DeleteModifiers"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-text = "Delete Modifier [Drag Here]"
+text = "Delete Modifier (Drag Here)"
 align = 1
 valign = 1
 __meta__ = {

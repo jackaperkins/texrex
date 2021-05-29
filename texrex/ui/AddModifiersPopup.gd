@@ -2,26 +2,32 @@ extends Button
 
 signal add_modifier(modifier)
 
+var separators = 0
+
 onready var modifiers = [
-	{'Utility': load('res://modifiers/utility/modifier_utility.tscn')},
-	{'Contrast': load('res://modifiers/contrast/modifier_contrast.tscn')},
-	{'Pallette': load('res://modifiers/pallette/modifier_pallette.tscn')},
-	{'Noise': load('res://modifiers/noise/modifier_noise.tscn')},
-	{'Resolution': load('res://modifiers/resolution/modifier_resolution.tscn')},
-	{'Seamless': load('res://modifiers/seamless/modifier_seamless.tscn')}
-]
+		{'-': 'Core'},
+		{'Resolution': load('res://modifiers/resolution/modifier_resolution.tscn')},
+		{'Utility': load('res://modifiers/utility/modifier_utility.tscn')},
+		{'-': 'Color'},
+		{'Contrast': load('res://modifiers/contrast/modifier_contrast.tscn')},
+		{'Pallette': load('res://modifiers/pallette/modifier_pallette.tscn')},
+		{'Noise': load('res://modifiers/noise/modifier_noise.tscn')},
+		{'-': 'Layout'},
+		{'Seamless': load('res://modifiers/seamless/modifier_seamless.tscn')}
+	]
+
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for pair in modifiers:
-		$PopupMenu.add_item(pair.keys()[0])
+	
+	for m in modifiers:
+		if m.keys()[0] == '-':
+			$PopupMenu.add_separator(m.values()[0])
+		else:
+			$PopupMenu.add_item(m.keys()[0])
+	
 
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 
 
 func _on_AddModifiers_button_down():

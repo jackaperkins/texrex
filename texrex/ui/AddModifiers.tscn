@@ -7,6 +7,9 @@ margin_right = 381.0
 margin_bottom = 21.0
 text = "Add Modifier ..."
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="PopupMenu" type="PopupMenu" parent="."]
 margin_top = 25.0

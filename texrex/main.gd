@@ -157,7 +157,10 @@ func update_modifier_drag(position):
 			snapped_y = child.get_global_rect().position.y + child.rect_size.y
 	
 	if delete_modifiers.get_global_rect().has_point(position):
+		delete_modifiers.self_modulate = Color(1,0,0)
 		drag_delete_node = true
+	else:
+		delete_modifiers.self_modulate = Color(1,1,1)
 
 	drop_visualizer.rect_position = Vector2(0, snapped_y)
 	drop_visualizer.visible = !drag_delete_node

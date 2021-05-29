@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=10 format=2]
+[gd_resource type="Theme" load_steps=12 format=2]
 
 [ext_resource path="res://fonts/font_vera.tres" type="DynamicFont" id=1]
 [ext_resource path="res://theme/panel_styleboxflat.tres" type="StyleBox" id=2]
@@ -26,6 +26,19 @@ color = Color( 0.219608, 0.219608, 0.219608, 1 )
 grow_begin = 0.0
 grow_end = 0.0
 thickness = 2
+
+[sub_resource type="StyleBoxFlat" id=6]
+
+[sub_resource type="StyleBoxFlat" id=7]
+content_margin_left = 10.0
+content_margin_right = 10.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.258824, 0.258824, 0.258824, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id=4]
 content_margin_left = 6.0
@@ -62,6 +75,25 @@ HSlider/styles/slider = null
 Panel/styles/dark_panel = ExtResource( 3 )
 Panel/styles/panel = ExtResource( 2 )
 PanelContainer/styles/panel = ExtResource( 2 )
+PopupMenu/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
+PopupMenu/colors/font_color_accel = Color( 0.7, 0.7, 0.7, 0.8 )
+PopupMenu/colors/font_color_disabled = Color( 0.4, 0.4, 0.4, 0.8 )
+PopupMenu/colors/font_color_hover = Color( 0.88, 0.88, 0.88, 1 )
+PopupMenu/colors/font_color_separator = Color( 0.88, 0.88, 0.88, 1 )
+PopupMenu/constants/hseparation = 4
+PopupMenu/constants/vseparation = 4
+PopupMenu/fonts/font = null
+PopupMenu/icons/checked = null
+PopupMenu/icons/radio_checked = null
+PopupMenu/icons/radio_unchecked = null
+PopupMenu/icons/submenu = null
+PopupMenu/icons/unchecked = null
+PopupMenu/styles/hover = SubResource( 6 )
+PopupMenu/styles/labeled_separator_left = null
+PopupMenu/styles/labeled_separator_right = null
+PopupMenu/styles/panel = SubResource( 7 )
+PopupMenu/styles/panel_disabled = null
+PopupMenu/styles/separator = null
 Tabs/colors/font_color_bg = Color( 0.69, 0.69, 0.69, 1 )
 Tabs/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
 Tabs/colors/font_color_fg = Color( 0.941176, 0.941176, 0.941176, 1 )
