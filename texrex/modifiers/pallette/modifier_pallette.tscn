@@ -57,5 +57,28 @@ __meta__ = {
 margin_right = 214.0
 margin_bottom = 109.0
 
+[node name="LerpContainer" type="HBoxContainer" parent="Modifier Pallette"]
+margin_right = 214.0
+margin_bottom = 109.0
+
+[node name="Label" type="Label" parent="Modifier Pallette/LerpContainer"]
+margin_top = 46.0
+margin_right = 35.0
+margin_bottom = 63.0
+text = "Fade"
+
+[node name="Lerp" type="HSlider" parent="Modifier Pallette/LerpContainer"]
+margin_left = 39.0
+margin_right = 214.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+value = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="value_changed" from="Modifier Pallette/Pallette" to="Modifier Pallette" method="_on_Pallette_value_changed"]
 [connection signal="tab_changed" from="Modifier Pallette/mode" to="Modifier Pallette" method="_on_mode_tab_changed"]
+[connection signal="value_changed" from="Modifier Pallette/LerpContainer/Lerp" to="Modifier Pallette" method="_on_Lerp_value_changed"]

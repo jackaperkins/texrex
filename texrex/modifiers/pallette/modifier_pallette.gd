@@ -13,7 +13,7 @@ var pallette_name = ""
 var pallette_image:StreamTexture = null
 
 var count = 0
-var dither = false
+var lerp_amount = 1
 
 var pallette:HSlider
 
@@ -42,7 +42,9 @@ func _ready():
 	
 	add_primary_child($Pallette)
 	add_primary_child($mode)
+	add_secondary_child($LerpContainer)
 	add_secondary_child($MarginContainer)
+	
 	
 	_update_ui()
 
@@ -54,6 +56,7 @@ func process_image(incoming:Image):
 		mat = mat_simple
 		# required to feed our image into a shadermaterial and get it back!
 	elif mode == 2:
+		mat_image.set_shader_param('lerp', lerp_amount)
 		mat = mat_image
 	var image_texture:ImageTexture = ImageTexture.new()
 	image_texture.create_from_image(incoming)
@@ -128,3 +131,9 @@ func filename_to_name(filename:String):
 	filename = filename.replace('_', ' ')
 	filename = filename.replacen('pallette', '')
 	return filename
+
+
+func _on_Lerp_value_changed(value):
+	lerp_amount = value
+	needs_processing = true
+	emit_signal('updated')

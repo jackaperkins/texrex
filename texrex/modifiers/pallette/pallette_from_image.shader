@@ -2,6 +2,7 @@ shader_type canvas_item;
 
 uniform sampler2D tex : hint_black;
 uniform sampler2D sourcePallette : hint_black;
+uniform float lerp=1;
 
 void fragment() {
 	vec4 pixel = texture(tex, UV);
@@ -21,7 +22,7 @@ void fragment() {
 		}
 	}
 	
-	COLOR = color;
+	COLOR = mix(pixel, color, lerp);
 }
 
 
