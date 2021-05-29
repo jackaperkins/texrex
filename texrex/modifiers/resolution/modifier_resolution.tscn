@@ -35,4 +35,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Interpolate" type="CheckBox" parent="Modifier"]
+margin_right = 214.0
+margin_bottom = 109.0
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Interpolate"
+
 [connection signal="value_changed" from="Modifier/Resolution" to="Modifier" method="_on_Resolution_value_changed"]
+[connection signal="toggled" from="Modifier/Interpolate" to="Modifier" method="_on_Interpolate_toggled"]
