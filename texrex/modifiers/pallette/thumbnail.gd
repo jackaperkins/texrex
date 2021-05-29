@@ -7,6 +7,9 @@ export var pallette_name: String
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	refresh()
+
+func refresh():
 	$TextureButton.texture_normal = pallette
 	$Label.text = pallette_name
 

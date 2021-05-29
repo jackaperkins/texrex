@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/quake1_pallette.png-f67bc2e277aeb6837071b877f3423044.stex"
+path="res://.import/quake_1_pallette.png-95d7253e7057609a0688c16a4043af22.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/pallettes/quake1_pallette.png"
-dest_files=[ "res://.import/quake1_pallette.png-f67bc2e277aeb6837071b877f3423044.stex" ]
+source_file="res://textures/pallettes/quake_1_pallette.png"
+dest_files=[ "res://.import/quake_1_pallette.png-95d7253e7057609a0688c16a4043af22.stex" ]
 
 [params]
 

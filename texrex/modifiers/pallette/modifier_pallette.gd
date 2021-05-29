@@ -2,6 +2,8 @@ extends "res://modifiers/modifier.gd"
 onready var mat_simple:ShaderMaterial = load('res://modifiers/pallette/m_render_pallette.tres')
 onready var mat_image:ShaderMaterial = load('res://modifiers/pallette/m_render_pallette_from_image.tres')
 
+onready var thumbnail = load('res://modifiers/pallette/thumbnail.tscn')
+
 var mat:ShaderMaterial 
 
 var mode = 0 # 0=simple, 1=from image
@@ -27,15 +29,16 @@ func _ready():
 	$mode.add_tab("Dither")
 	$mode.add_tab("Pallette")
 
-	
-	
+	var pallette_images = load_pallettes()
+	print(String(pallette_images.size()) + ' loaded pallettes!!')
 	var first = true
-	for child in $MarginContainer/GridContainer.get_children():
+	for item in pallette_images:
+		var child = thumbnail.instance()
+		$MarginContainer/GridContainer.add_child(child)
+		child.pallette = item["pallette"]
+		child.pallette_name = item["name"]
+		child.refresh()
 		child.connect("pallette_picked", self, "_on_pallette_picked")
-		if first:
-			first = false
-			mat_image.set_shader_param('sourcePallette', child.pallette)
-			pallette_name = child.pallette_name
 	
 	add_primary_child($Pallette)
 	add_primary_child($mode)
@@ -59,9 +62,9 @@ func process_image(incoming:Image):
 	yield(process_shader(mat, incoming.get_size(), image), 'completed')
 	needs_processing = false
 
-func _on_pallette_picked (pallette, new_name):
+func _on_pallette_picked (new_image, new_name):
 	print('new pallette picked')
-	mat_image.set_shader_param('sourcePallette', pallette)
+	mat_image.set_shader_param('sourcePallette', new_image)
 	pallette_name = new_name
 	_update_ui()
 	needs_processing = true
@@ -89,3 +92,35 @@ func _on_mode_tab_changed(tab):
 	_update_ui()
 	needs_processing = true
 	emit_signal('updated')
+	
+	
+# load all image files we find in the /textures/pallettes directory
+# not sure this will work on all platforms
+# https://godotengine.org/qa/59637/cannot-traverse-asset-directory-in-android
+func load_pallettes():
+	var dir = Directory.new()
+	var pallette_list = []
+	if dir.open("res://textures/pallettes") == OK:
+		dir.list_dir_begin()
+		var filename = dir.get_next()
+		while (filename != ""):
+			if filename.ends_with(".png"):
+				pallette_list.append("res://textures/pallettes/" + filename)
+			filename = dir.get_next()
+			
+	print('found pallettes: ' + String(pallette_list.size()))
+	
+	for x in range(pallette_list.size()):
+		var loaded_tex:StreamTexture = load(pallette_list[x])
+		pallette_list[x] = {
+			"name": filename_to_name(pallette_list[x]),
+			"pallette": loaded_tex
+		}
+	return pallette_list
+
+func filename_to_name(filename:String):
+	filename = filename.rsplit('/',true,1)[1]
+	filename = filename.rsplit('.')[0]
+	filename = filename.replace('_', ' ')
+	filename = filename.replacen('pallette', '')
+	return filename
