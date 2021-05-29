@@ -87,6 +87,8 @@ func process_shader(material:Material, canvas_size:Vector2, result_image):
 		if image_data.get_pixel(0,0).a != 0.0: #we know this throws an error, someones unhappy we're accessing a null pointer but we still get a safe value of 0,0,0,0 that we can sentinel off of!!!
 			image_data.unlock()
 			result_image.copy_from(image_data)
+			
+			view.free() # !!!! agressive freeing of viewport, orphaned viewports would all run in parallel :scream:
 			break
 		image_data.unlock()
 		yield(get_tree(), "idle_frame")

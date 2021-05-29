@@ -48,7 +48,7 @@ margin_right = 214.0
 margin_bottom = 89.0
 custom_constants/vseparation = 25
 custom_constants/hseparation = 10
-columns = 5
+columns = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
