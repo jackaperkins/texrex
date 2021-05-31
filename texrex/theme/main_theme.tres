@@ -27,9 +27,9 @@ grow_begin = 0.0
 grow_end = 0.0
 thickness = 2
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=4]
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=5]
 content_margin_left = 10.0
 content_margin_right = 10.0
 content_margin_top = 5.0
@@ -40,12 +40,12 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=6]
 content_margin_left = 6.0
 content_margin_right = 6.0
 bg_color = Color( 0.34902, 0.34902, 0.34902, 1 )
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=7]
 content_margin_left = 6.0
 content_margin_right = 6.0
 bg_color = Color( 0.419608, 0.419608, 0.419608, 1 )
@@ -88,10 +88,10 @@ PopupMenu/icons/radio_checked = null
 PopupMenu/icons/radio_unchecked = null
 PopupMenu/icons/submenu = null
 PopupMenu/icons/unchecked = null
-PopupMenu/styles/hover = SubResource( 6 )
+PopupMenu/styles/hover = SubResource( 4 )
 PopupMenu/styles/labeled_separator_left = null
 PopupMenu/styles/labeled_separator_right = null
-PopupMenu/styles/panel = SubResource( 7 )
+PopupMenu/styles/panel = SubResource( 5 )
 PopupMenu/styles/panel_disabled = null
 PopupMenu/styles/separator = null
 Tabs/colors/font_color_bg = Color( 0.69, 0.69, 0.69, 1 )
@@ -110,6 +110,6 @@ Tabs/icons/increment_highlight = null
 Tabs/styles/button = null
 Tabs/styles/button_pressed = null
 Tabs/styles/panel = null
-Tabs/styles/tab_bg = SubResource( 4 )
+Tabs/styles/tab_bg = SubResource( 6 )
 Tabs/styles/tab_disabled = null
-Tabs/styles/tab_fg = SubResource( 5 )
+Tabs/styles/tab_fg = SubResource( 7 )

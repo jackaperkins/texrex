@@ -11,8 +11,11 @@ onready var modifiers = [
 		{'-': 'Color'},
 		{'Contrast': load('res://modifiers/contrast/modifier_contrast.tscn')},
 		{'Pallette': load('res://modifiers/pallette/modifier_pallette.tscn')},
+		{'-': 'Detail'},
+		{'Blur': load('res://modifiers/blur/modifier_blur.tscn')},
 		{'Noise': load('res://modifiers/noise/modifier_noise.tscn')},
 		{'-': 'Layout'},
+		
 		{'Seamless': load('res://modifiers/seamless/modifier_seamless.tscn')}
 	]
 
