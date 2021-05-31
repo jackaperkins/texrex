@@ -10,6 +10,8 @@ onready var canvasMainTexture = $CanvasLayer/canvas_root/canvasScaler/GridContai
 onready var canvasAllTextures = $CanvasLayer/canvas_root/canvasScaler/GridContainer.get_children()
 onready var bottom_info = $BottomBar/HBoxContainer/BottomInfo
 
+onready var scale_label = $BottomBar/HBoxContainer/HBoxContainer/ScaleLabel
+
 var mostRecentTexture = null
 
 # pan canvas
@@ -18,11 +20,17 @@ var is_panning = false
 var show_tiles = true
 
 func _ready():
+	frame_center()
 	pass
 
 func set_texture(tex):
 	mostRecentTexture = tex
 	display_tiles()
+	frame_center()
+	
+func frame_center():
+	canvas_root.rect_position = rect_size / 2
+	pass
 		
 func _process(delta):
 	if Input.is_action_just_pressed('middle_mouse'):
@@ -31,11 +39,25 @@ func _process(delta):
 		is_panning = false
 
 func _input(event):
+	# bug this is doubled for some reason
 	if event is InputEventMouseButton:
+		var next_scale = canvasScaler.rect_scale.x
 		if event.button_index == BUTTON_WHEEL_UP:
-			canvasScaler.rect_scale += Vector2(0.1, 0.1)
+			if next_scale >= 1:
+				next_scale += .2
+			else:
+				next_scale += .05
 		elif event.button_index == BUTTON_WHEEL_DOWN:
-			canvasScaler.rect_scale-= Vector2(0.1, 0.1)
+			if next_scale > 1:
+				next_scale -= .2
+			else:
+				print('decreasing slowly')
+				next_scale -= .05
+		
+		if event.button_index == BUTTON_WHEEL_UP or event.button_index == BUTTON_WHEEL_DOWN:
+			next_scale = clamp(next_scale, 0, 5)
+			canvasScaler.rect_scale = Vector2(next_scale,next_scale)
+			scale_label.text = "Scale " + String(int(next_scale*100)) + "%"
 	if event is InputEventMouseMotion:
 		if is_panning:
 			canvas_root.rect_position += event.relative
@@ -54,3 +76,10 @@ func display_tiles():
 func _on_Tile_toggled(button_pressed):
 	show_tiles = button_pressed
 	display_tiles()
+
+
+func _on_ResetView_pressed():
+	frame_center()
+	scale_label.text = "Scale 100%"
+	canvasScaler.rect_scale = Vector2(1,1)
+

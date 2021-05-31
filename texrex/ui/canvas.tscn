@@ -210,8 +210,8 @@ __meta__ = {
 
 [node name="BottomInfo" type="Label" parent="BottomBar/HBoxContainer"]
 margin_top = 3.0
-margin_right = 27.0
-margin_bottom = 18.0
+margin_right = 26.0
+margin_bottom = 17.0
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Ram"
@@ -219,19 +219,40 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Tile" type="Button" parent="BottomBar/HBoxContainer"]
-margin_left = 1142.0
-margin_right = 1257.0
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomBar/HBoxContainer"]
+margin_left = 513.0
+margin_right = 773.0
+margin_bottom = 21.0
+size_flags_horizontal = 6
+custom_constants/separation = 10
+
+[node name="ScaleLabel" type="Label" parent="BottomBar/HBoxContainer/HBoxContainer"]
+margin_top = 2.0
+margin_right = 83.0
+margin_bottom = 19.0
+text = "Scale 100%"
+
+[node name="ResetView" type="Button" parent="BottomBar/HBoxContainer/HBoxContainer"]
+margin_left = 93.0
+margin_right = 192.0
 margin_bottom = 21.0
 focus_mode = 0
-size_flags_horizontal = 10
+enabled_focus_mode = 0
+text = "RESET VIEW"
+
+[node name="Tile" type="Button" parent="BottomBar/HBoxContainer/HBoxContainer"]
+margin_left = 202.0
+margin_right = 260.0
+margin_bottom = 21.0
+focus_mode = 0
 toggle_mode = true
 pressed = true
 enabled_focus_mode = 0
-text = "TILE YEAAAAH"
+text = "TILING"
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
-[connection signal="toggled" from="BottomBar/HBoxContainer/Tile" to="." method="_on_Tile_toggled"]
+[connection signal="pressed" from="BottomBar/HBoxContainer/HBoxContainer/ResetView" to="." method="_on_ResetView_pressed"]
+[connection signal="toggled" from="BottomBar/HBoxContainer/HBoxContainer/Tile" to="." method="_on_Tile_toggled"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
