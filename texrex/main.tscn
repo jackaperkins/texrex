@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://modifiers/contrast/modifier_contrast.tscn" type="PackedScene" id=2]
@@ -6,11 +6,6 @@
 [ext_resource path="res://ui/AddModifiers.tscn" type="PackedScene" id=4]
 [ext_resource path="res://theme/main_theme.tres" type="Theme" id=6]
 [ext_resource path="res://theme/panel_styleboxflat_dark.tres" type="StyleBox" id=7]
-
-[sub_resource type="StyleBoxFlat" id=1]
-
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0.152941, 0.152941, 0.152941, 1 )
 
 [sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.396078, 0.286275, 0.286275, 1 )
@@ -57,86 +52,24 @@ __meta__ = {
 
 [node name="Menubar" type="PanelContainer" parent="main_split/main area/VBoxContainer"]
 margin_right = 867.0
-margin_bottom = 21.0
+margin_bottom = 19.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="main_split/main area/VBoxContainer/Menubar"]
 margin_right = 867.0
-margin_bottom = 21.0
+margin_bottom = 19.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Load" type="Button" parent="main_split/main area/VBoxContainer/Menubar/HBoxContainer"]
-margin_right = 47.0
-margin_bottom = 21.0
-text = "Load"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Save" type="Button" parent="main_split/main area/VBoxContainer/Menubar/HBoxContainer"]
-margin_left = 51.0
-margin_right = 98.0
-margin_bottom = 21.0
-text = "Save"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="PanelContainer" type="Panel" parent="main_split/main area/VBoxContainer/Menubar/HBoxContainer"]
-margin_left = 102.0
-margin_right = 823.0
-margin_bottom = 21.0
-size_flags_horizontal = 3
-custom_styles/panel = ExtResource( 7 )
-
-[node name="Filename" type="Label" parent="main_split/main area/VBoxContainer/Menubar/HBoxContainer/PanelContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 5.0
-margin_right = -10.0
-size_flags_horizontal = 5
-text = "No File Loaded"
-align = 2
-clip_text = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Container" type="Control" parent="main_split/main area/VBoxContainer/Menubar/HBoxContainer"]
-margin_left = 827.0
-margin_right = 867.0
-margin_bottom = 21.0
-rect_min_size = Vector2( 40, 0 )
-
-[node name="RenderIndicator" type="Panel" parent="main_split/main area/VBoxContainer/Menubar/HBoxContainer/Container"]
-margin_left = 10.9698
-margin_top = 4.522
-margin_right = 30.9698
-margin_bottom = 24.522
-rect_rotation = -134.6
-rect_pivot_offset = Vector2( 10, 10 )
-custom_styles/panel = SubResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Panel2" type="Panel" parent="main_split/main area/VBoxContainer/Menubar/HBoxContainer/Container/RenderIndicator"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = 8.021
-margin_bottom = -9.97899
-rect_pivot_offset = Vector2( 10, 1 )
-custom_styles/panel = SubResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="MenuButton" type="MenuButton" parent="main_split/main area/VBoxContainer/Menubar/HBoxContainer"]
+margin_right = 12.0
+margin_bottom = 19.0
+items = [ "File", null, 0, false, false, 0, 0, null, "", false ]
 
 [node name="canvas" parent="main_split/main area/VBoxContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 21.0
+margin_top = 19.0
 margin_right = 867.0
 margin_bottom = 768.0
 
@@ -163,32 +96,39 @@ __meta__ = {
 }
 
 [node name="AddModifiers" parent="main_split/Panel/VBoxContainer" instance=ExtResource( 4 )]
+margin_bottom = 19.0
 
 [node name="VSeparator" type="HSeparator" parent="main_split/Panel/VBoxContainer"]
 modulate = Color( 1, 1, 1, 0 )
-margin_top = 25.0
+margin_top = 23.0
 margin_right = 381.0
-margin_bottom = 45.0
+margin_bottom = 43.0
 custom_constants/separation = 20
 
-[node name="modifiers_container" type="VBoxContainer" parent="main_split/Panel/VBoxContainer"]
-margin_top = 49.0
+[node name="ScrollContainer" type="ScrollContainer" parent="main_split/Panel/VBoxContainer"]
+margin_top = 47.0
 margin_right = 381.0
-margin_bottom = 158.0
+margin_bottom = 554.0
+size_flags_vertical = 3
+
+[node name="modifiers_container" type="VBoxContainer" parent="main_split/Panel/VBoxContainer/ScrollContainer"]
+margin_right = 381.0
+margin_bottom = 105.0
+size_flags_horizontal = 3
 custom_constants/separation = 12
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Modifier Contrast" parent="main_split/Panel/VBoxContainer/modifiers_container" instance=ExtResource( 2 )]
+[node name="Modifier Contrast" parent="main_split/Panel/VBoxContainer/ScrollContainer/modifiers_container" instance=ExtResource( 2 )]
 anchor_right = 0.0
 margin_right = 381.0
-margin_bottom = 109.0
+margin_bottom = 105.0
 
 [node name="MarginContainer" type="MarginContainer" parent="main_split/Panel/VBoxContainer"]
-margin_top = 162.0
+margin_top = 558.0
 margin_right = 381.0
-margin_bottom = 252.0
+margin_bottom = 648.0
 custom_constants/margin_top = 30
 __meta__ = {
 "_edit_use_anchors_": false
@@ -211,12 +151,75 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="HSeparator" type="HSeparator" parent="main_split/Panel/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 652.0
+margin_right = 381.0
+margin_bottom = 667.0
+
+[node name="PanelContainer" type="PanelContainer" parent="main_split/Panel/VBoxContainer"]
+margin_top = 671.0
+margin_right = 381.0
+margin_bottom = 748.0
+
+[node name="MarginContainer" type="MarginContainer" parent="main_split/Panel/VBoxContainer/PanelContainer"]
+margin_right = 381.0
+margin_bottom = 77.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="main_split/Panel/VBoxContainer/PanelContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 371.0
+margin_bottom = 67.0
+
+[node name="FileLabel" type="Label" parent="main_split/Panel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_right = 361.0
+margin_bottom = 15.0
+text = "No File Loaded"
+align = 2
+clip_text = true
+
+[node name="FileStatsLabel" type="Label" parent="main_split/Panel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 19.0
+margin_right = 361.0
+margin_bottom = 34.0
+align = 1
+clip_text = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="main_split/Panel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+margin_top = 38.0
+margin_right = 361.0
+margin_bottom = 57.0
+
+[node name="Load" type="Button" parent="main_split/Panel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 161.0
+margin_bottom = 19.0
+size_flags_horizontal = 3
+text = "Load"
+
+[node name="VSeparator" type="VSeparator" parent="main_split/Panel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+modulate = Color( 0, 1, 1, 0 )
+margin_left = 165.0
+margin_right = 195.0
+margin_bottom = 19.0
+custom_constants/separation = 30
+
+[node name="Save" type="Button" parent="main_split/Panel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 199.0
+margin_right = 361.0
+margin_bottom = 19.0
+size_flags_horizontal = 11
+text = "Save"
+
 [node name="DropVisualizer" type="Panel" parent="main_split/Panel"]
-anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 0.5
-margin_top = -1.7818
-margin_bottom = 3.2182
+margin_left = 3.1748
+margin_top = 386.98
+margin_bottom = 390.98
 rect_min_size = Vector2( 0, 3 )
 size_flags_horizontal = 3
 custom_styles/panel = SubResource( 4 )
@@ -248,6 +251,7 @@ margin_left = 141.776
 margin_top = 70.7754
 margin_right = 880.776
 margin_bottom = 540.775
+theme = ExtResource( 6 )
 window_title = "Save"
 resizable = true
 mode_overrides_title = false
@@ -260,7 +264,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="main_split/main area/VBoxContainer/Menubar/HBoxContainer/Load" to="." method="_on_Load_pressed"]
-[connection signal="pressed" from="main_split/main area/VBoxContainer/Menubar/HBoxContainer/Save" to="." method="_on_Save_pressed"]
+[connection signal="pressed" from="main_split/Panel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Load" to="." method="_on_Load_pressed"]
+[connection signal="pressed" from="main_split/Panel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Save" to="." method="_on_Save_pressed"]
 [connection signal="file_selected" from="open_file_dialog" to="." method="_on_open_image"]
 [connection signal="file_selected" from="save_file_dialog" to="." method="_on_save_file_dialog_file_selected"]

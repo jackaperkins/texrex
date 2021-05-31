@@ -41,6 +41,8 @@ func _process(delta):
 func _input(event):
 	# bug this is doubled for some reason
 	if event is InputEventMouseButton:
+		if not get_global_rect().has_point(get_viewport().get_mouse_position()):
+			return
 		var next_scale = canvasScaler.rect_scale.x
 		if event.button_index == BUTTON_WHEEL_UP:
 			if next_scale >= 1:
@@ -51,7 +53,6 @@ func _input(event):
 			if next_scale > 1:
 				next_scale -= .2
 			else:
-				print('decreasing slowly')
 				next_scale -= .05
 		
 		if event.button_index == BUTTON_WHEEL_UP or event.button_index == BUTTON_WHEEL_DOWN:

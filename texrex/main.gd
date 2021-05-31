@@ -6,17 +6,15 @@ var image = Image.new()
 
 var result = Image.new()
 
-var activity_spin_frames = 0
-
 onready var modifier_resolution = load('res://modifiers/resolution/modifier_resolution.tscn')
 
-onready var file_name_label = $"main_split/main area/VBoxContainer/Menubar/HBoxContainer/PanelContainer/Filename"
-onready var renderIndicator:Panel = $"main_split/main area/VBoxContainer/Menubar/HBoxContainer/Container/RenderIndicator"
+onready var file_name_label = $main_split/Panel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/FileLabel
+onready var file_stats_label = $main_split/Panel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/FileStatsLabel
 
 onready var canvas = $"main_split/main area/VBoxContainer/canvas"
 
 onready var drop_visualizer = $main_split/Panel/DropVisualizer
-onready var modifiers_container = $main_split/Panel/VBoxContainer/modifiers_container
+onready var modifiers_container = $main_split/Panel/VBoxContainer/ScrollContainer/modifiers_container
 onready var modifier_box = $main_split/Panel/VBoxContainer/AddModifiers
 onready var delete_modifiers = $main_split/Panel/VBoxContainer/MarginContainer/DeleteModifiers
 onready var delete_modifiers_container = $main_split/Panel/VBoxContainer/MarginContainer
@@ -115,7 +113,6 @@ func _on_modifier_updated():
 				# special case to wait for a  yield if our modifier is a coroutine
 				if function is GDScriptFunctionState && function.is_valid():
 					yield(function, "completed")
-					activity_spin_frames = max(8, activity_spin_frames)
 			result.copy_from(modifier.image)
 		i -= 1
 	texture.create_from_image(result, 3)
@@ -131,9 +128,7 @@ func find_modifier(node:Node):
 				return n
 
 func _process(delta):
-	if activity_spin_frames > 0: # wheeeee!!
-		activity_spin_frames -= 1
-		renderIndicator.rect_rotation += 3
+	pass
 
 
 func _input(event):
@@ -195,6 +190,9 @@ func _on_open_image(path_to_image):
 	config.save('user://settings.cfg')
 	original_image.load(path_to_image)
 	image.copy_from(original_image)
+	
+	var image_size = image.get_size()
+	file_stats_label.text = 'Original Size ' + String(image_size.x) + 'x' + String(image_size.y)
 	process_all()
 
 func _on_Save_pressed():
