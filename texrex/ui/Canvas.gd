@@ -26,7 +26,6 @@ func _ready():
 func set_texture(tex):
 	mostRecentTexture = tex
 	display_tiles()
-	frame_center()
 	
 func frame_center():
 	canvas_root.rect_position = rect_size / 2

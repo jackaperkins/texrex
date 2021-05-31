@@ -167,7 +167,6 @@ func preload_default():
 	process_all()
 	
 func _on_Load_pressed():
-	print('loading file dialog')
 	var last_directory = ''
 	
 	var config = ConfigFile.new()
@@ -185,18 +184,18 @@ func _on_open_image(path_to_image):
 		config = ConfigFile.new()
 	var path = path_to_image.rsplit("/", true, 1)[0]
 	config.set_value('memory', 'last_directory', path)
-	print('setting path memory! ' + path)
 	file_name_label.text = path_to_image
 	config.save('user://settings.cfg')
 	original_image.load(path_to_image)
 	image.copy_from(original_image)
+	
+	canvas.frame_center()
 	
 	var image_size = image.get_size()
 	file_stats_label.text = 'Original Size ' + String(image_size.x) + 'x' + String(image_size.y)
 	process_all()
 
 func _on_Save_pressed():
-	print('loading save dialog')
 	$save_file_dialog.popup_centered_clamped(Vector2(800,600))
 
 func _on_save_file_dialog_file_selected(path):

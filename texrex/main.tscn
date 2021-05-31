@@ -7,7 +7,7 @@
 [ext_resource path="res://theme/main_theme.tres" type="Theme" id=6]
 [ext_resource path="res://theme/panel_styleboxflat_dark.tres" type="StyleBox" id=7]
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.396078, 0.286275, 0.286275, 1 )
 border_color = Color( 0.823529, 0.439216, 0.439216, 1 )
 corner_radius_top_left = 15
@@ -15,7 +15,7 @@ corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 1, 1, 1, 1 )
 
 [node name="Control" type="Control"]
@@ -139,7 +139,7 @@ margin_top = 30.0
 margin_right = 381.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 0, 60 )
-custom_styles/panel = SubResource( 3 )
+custom_styles/panel = SubResource( 1 )
 
 [node name="Label" type="Label" parent="main_split/Panel/VBoxContainer/MarginContainer/DeleteModifiers"]
 anchor_right = 1.0
@@ -222,7 +222,7 @@ margin_top = 386.98
 margin_bottom = 390.98
 rect_min_size = Vector2( 0, 3 )
 size_flags_horizontal = 3
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
