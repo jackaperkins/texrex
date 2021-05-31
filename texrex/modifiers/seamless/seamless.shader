@@ -2,7 +2,7 @@ shader_type canvas_item;
 
 uniform sampler2D tex : hint_black;
 uniform sampler2D splatMap;
-uniform float distance = 10;
+uniform float distance = 2;
 
 float rand(vec2 co){
     return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
@@ -27,8 +27,6 @@ void fragment() {
 	splatUVs = vec2(0.2,0.2) + splatUVs * 0.8;
 	
 	vec4 splatted = texture(tex, splatUVs);
-	
-	
 	
 	float fader = max(mapping(UV.x), mapping(UV.y));
 	baseColor = mix(baseColor, splatted, fader);
