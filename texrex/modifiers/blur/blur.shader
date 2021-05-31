@@ -2,6 +2,7 @@ shader_type canvas_item;
 
 uniform sampler2D tex : hint_black;
 uniform float amount; 
+uniform bool smart;
 
 void fragment() {
 	
@@ -18,8 +19,16 @@ void fragment() {
 	vec4 averageColor = leftColor + rightColor + upColor + downColor;
 	averageColor /= 4.0;
 	
-	float mixFactor = clamp(1.0 - distance(averageColor, baseColor), 0, 1);
-	mixFactor = pow(mixFactor, 3);
+	float mixFactor;
+	
+	if(smart) {
+		mixFactor = clamp(1.0 - distance(averageColor, baseColor), 0, 1);
+		mixFactor = pow(mixFactor, 3);
+		mixFactor *= amount;
+	} else {
+		mixFactor = amount * 0.7;
+	}
+	
 	COLOR = mix(baseColor, averageColor, mixFactor);
 
 }

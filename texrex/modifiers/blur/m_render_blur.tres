@@ -5,3 +5,4 @@
 [resource]
 shader = ExtResource( 1 )
 shader_param/amount = null
+shader_param/smart = null
