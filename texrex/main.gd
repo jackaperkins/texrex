@@ -167,28 +167,17 @@ func preload_default():
 	process_all()
 	
 func _on_Load_pressed():
-	var last_directory = ''
-	
-	var config = ConfigFile.new()
-	var err = config.load("user://settings.cfg")
-	if err == OK:
-		if config.has_section_key('memory', "last_directory"):
-			last_directory = config.get_value('memory', 'last_directory')
-			$open_file_dialog.current_dir = last_directory
+	var path = get_saved_path()
+	if path != '':
+		$open_file_dialog.current_dir = path
 	$open_file_dialog.popup_centered_clamped(Vector2(800,600))
 
 func _on_open_image(path_to_image):
-	var config = ConfigFile.new()
-	var err = config.load("user://settings.cfg")
-	if err != OK:
-		config = ConfigFile.new()
-	var path = path_to_image.rsplit("/", true, 1)[0]
-	config.set_value('memory', 'last_directory', path)
+	save_saved_path(path_to_image)
 	file_name_label.text = path_to_image
-	config.save('user://settings.cfg')
+	print("loading new image from path " + path_to_image)
 	original_image.load(path_to_image)
 	image.copy_from(original_image)
-	
 	canvas.frame_center()
 	
 	var image_size = image.get_size()
@@ -196,8 +185,28 @@ func _on_open_image(path_to_image):
 	process_all()
 
 func _on_Save_pressed():
+	var path = get_saved_path()
+	if path != '':
+		$save_file_dialog.current_dir = path
 	$save_file_dialog.popup_centered_clamped(Vector2(800,600))
 
+func get_saved_path()->String:
+	var config = ConfigFile.new()
+	var err = config.load("user://settings.cfg")
+	if err == OK:
+		if config.has_section_key('memory', "last_directory"):
+			return config.get_value('memory', 'last_directory')
+	return ''
+
+func save_saved_path(new_path):
+	var config = ConfigFile.new()
+	var err = config.load("user://settings.cfg")
+	if err != OK:
+		config = ConfigFile.new()
+	var path = new_path.rsplit("/", true, 1)[0]
+	config.set_value('memory', 'last_directory', path)
+	config.save('user://settings.cfg')
+	
 func _on_save_file_dialog_file_selected(path):
 	result.save_png(path)
 	pass # Replace with function body.
