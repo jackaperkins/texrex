@@ -19,7 +19,10 @@ onready var modifier_box = $main_split/Panel/VBoxContainer/AddModifiers
 onready var delete_modifiers = $main_split/Panel/VBoxContainer/MarginContainer/DeleteModifiers
 onready var delete_modifiers_container = $main_split/Panel/VBoxContainer/MarginContainer
 
+onready var about_popup = $AboutPopup
+
 var texture = ImageTexture.new() # texture version that can be shown inside a sprite
+
 
 
 var modifiers = []
@@ -209,4 +212,9 @@ func save_saved_path(new_path):
 	
 func _on_save_file_dialog_file_selected(path):
 	result.save_png(path)
+	pass # Replace with function body.
+
+
+func _on_AboutButton_pressed():
+	about_popup.popup()
 	pass # Replace with function body.

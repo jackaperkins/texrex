@@ -1,11 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://modifiers/contrast/modifier_contrast.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ui/canvas.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ui/AddModifiers.tscn" type="PackedScene" id=4]
+[ext_resource path="res://fonts/font_vera_title.tres" type="DynamicFont" id=5]
 [ext_resource path="res://theme/main_theme.tres" type="Theme" id=6]
 [ext_resource path="res://theme/panel_styleboxflat_dark.tres" type="StyleBox" id=7]
+[ext_resource path="res://fonts/font_vera_title_bold.tres" type="DynamicFont" id=8]
+[ext_resource path="res://ui/icon.png" type="Texture" id=9]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.396078, 0.286275, 0.286275, 1 )
@@ -61,10 +64,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MenuButton" type="MenuButton" parent="main_split/main area/VBoxContainer/Menubar/HBoxContainer"]
-margin_right = 12.0
+[node name="AboutButton" type="Button" parent="main_split/main area/VBoxContainer/Menubar/HBoxContainer"]
+margin_right = 48.0
 margin_bottom = 19.0
-items = [ "File", null, 0, false, false, 0, 0, null, "", false ]
+text = "About"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="canvas" parent="main_split/main area/VBoxContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
@@ -264,6 +270,87 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="AboutPopup" type="Popup" parent="."]
+visible = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 100.0
+margin_top = 100.0
+margin_right = -100.0
+margin_bottom = -100.0
+
+[node name="Panel" type="Panel" parent="AboutPopup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AboutPopup/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="AboutPopup/Panel/VBoxContainer"]
+margin_right = 1040.0
+margin_bottom = 460.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/bold_font = ExtResource( 8 )
+custom_fonts/normal_font = ExtResource( 5 )
+bbcode_enabled = true
+bbcode_text = "[b]TEXREX [/b]
+2021 Alpha
+
+[b]HELP[/b]
+Add modifiers
+Drag and drop them to change order. The top most modifier is the last applied
+Drag them to the trash at the bottom to delete
+
+ALPHA Lacks features like saving project files or custom palettes but i hope to support these soon.
+
+[b]SOURCE CODE[/b]
+source is available at:
+[url]https://github.com/jackaperkins/texrex[/url]"
+text = "TEXREX 
+2021 Alpha
+
+HELP
+Add modifiers
+Drag and drop them to change order. The top most modifier is the last applied
+Drag them to the trash at the bottom to delete
+
+ALPHA Lacks features like saving project files or custom palettes but i hope to support these soon.
+
+SOURCE CODE
+source is available at:
+https://github.com/jackaperkins/texrex"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AboutPopup/Panel/VBoxContainer"]
+margin_top = 464.0
+margin_right = 1040.0
+margin_bottom = 528.0
+
+[node name="TextureRect" type="TextureRect" parent="AboutPopup/Panel/VBoxContainer/HBoxContainer"]
+margin_right = 64.0
+margin_bottom = 64.0
+texture = ExtResource( 9 )
+
+[node name="Label" type="Label" parent="AboutPopup/Panel/VBoxContainer/HBoxContainer"]
+margin_left = 68.0
+margin_top = 20.0
+margin_right = 398.0
+margin_bottom = 44.0
+custom_fonts/font = ExtResource( 8 )
+text = "Proudly made with Godot Engine"
+
+[connection signal="pressed" from="main_split/main area/VBoxContainer/Menubar/HBoxContainer/AboutButton" to="." method="_on_AboutButton_pressed"]
 [connection signal="pressed" from="main_split/Panel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Load" to="." method="_on_Load_pressed"]
 [connection signal="pressed" from="main_split/Panel/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Save" to="." method="_on_Save_pressed"]
 [connection signal="file_selected" from="open_file_dialog" to="." method="_on_open_image"]
