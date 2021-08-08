@@ -29,9 +29,6 @@ func _ready():
 			$PopupMenu.add_separator(m.values()[0])
 		else:
 			$PopupMenu.add_item(m.keys()[0])
-	
-
-
 
 func _on_AddModifiers_button_down():
 	var pos = Rect2(get_global_rect().position.x, get_global_rect().position.y+rect_size.y, rect_size.x,20)

@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://theme/main_theme.tres" type="Theme" id=1]
+
+[node name="save_file_dialog" type="FileDialog"]
+margin_left = 17.3252
+margin_top = 168.356
+margin_right = 756.325
+margin_bottom = 638.356
+theme = ExtResource( 1 )
+window_title = "Save"
+resizable = true
+mode_overrides_title = false
+access = 2
+filters = PoolStringArray( "*.png" )
+show_hidden_files = true
+current_dir = "/Users/jacka/Documents/_projects/texrex/texrex"
+current_path = "/Users/jacka/Documents/_projects/texrex/texrex/"
+__meta__ = {
+"_edit_use_anchors_": false
+}

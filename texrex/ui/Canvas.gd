@@ -24,6 +24,7 @@ func _ready():
 	pass
 
 func set_texture(tex):
+	print('setting texture in canvas')
 	mostRecentTexture = tex
 	display_tiles()
 	

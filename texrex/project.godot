@@ -26,6 +26,11 @@ boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="res://icons/texrex_icon_4xscaled.png"
 
+[autoload]
+
+OpenFileDialog="*res://ui/open_file_dialog.tscn"
+SaveFileDialog="*res://ui/save_file_dialog.tscn"
+
 [display]
 
 window/size/width=1280
